@@ -1,0 +1,102 @@
+[
+    {
+        "isbn": "978-958-42-5168-5",
+        "titulo": "Cien Años de Soledad",
+        "autor": "Gabriel García Márquez",
+        "peso": 0.45,
+        "valor": 45000,
+        "genero": "Ficción",
+        "cantidad_disponible": 3,
+        "cantidad_total": 5
+    },
+    {
+        "isbn": "978-958-42-1234-7",
+        "titulo": "El Amor en los Tiempos del Cólera",
+        "autor": "Gabriel García Márquez",
+        "peso": 0.52,
+        "valor": 48000,
+        "genero": "Ficción",
+        "cantidad_disponible": 2,
+        "cantidad_total": 3
+    },
+    {
+        "isbn": "978-607-07-2345-8",
+        "titulo": "Rayuela",
+        "autor": "Julio Cortázar",
+        "peso": 0.68,
+        "valor": 55000,
+        "genero": "Ficción",
+        "cantidad_disponible": 1,
+        "cantidad_total": 2
+    },
+    {
+        "isbn": "978-950-07-3456-9",
+        "titulo": "Ficciones",
+        "autor": "Jorge Luis Borges",
+        "peso": 0.35,
+        "valor": 38000,
+        "genero": "Ficción",
+        "cantidad_disponible": 4,
+        "cantidad_total": 4
+    },
+    {
+        "isbn": "978-987-629-123-4",
+        "titulo": "La Casa de los Espíritus",
+        "autor": "Isabel Allende",
+        "peso": 0.58,
+        "valor": 52000,
+        "genero": "Ficción",
+        "cantidad_disponible": 2,
+        "cantidad_total": 4
+    },
+    {
+        "isbn": "978-84-376-0494-7",
+        "titulo": "Don Quijote de la Mancha",
+        "autor": "Miguel de Cervantes",
+        "peso": 1.2,
+        "valor": 75000,
+        "genero": "Clásico",
+        "cantidad_disponible": 1,
+        "cantidad_total": 2
+    },
+    {
+        "isbn": "978-968-16-5678-2",
+        "titulo": "Pedro Páramo",
+        "autor": "Juan Rulfo",
+        "peso": 0.28,
+        "valor": 32000,
+        "genero": "Ficción",
+        "cantidad_disponible": 3,
+        "cantidad_total": 3
+    },
+    {
+        "isbn": "978-950-731-234-5",
+        "titulo": "El Túnel",
+        "autor": "Ernesto Sabato",
+        "peso": 0.22,
+        "valor": 28000,
+        "genero": "Ficción",
+        "cantidad_disponible": 5,
+        "cantidad_total": 5
+    },
+    {
+        "isbn": "978-958-30-4567-8",
+        "titulo": "La Vorágine",
+        "autor": "José Eustasio Rivera",
+        "peso": 0.48,
+        "valor": 42000,
+        "genero": "Clásico",
+        "cantidad_disponible": 2,
+        "cantidad_total": 3
+    },
+    {
+        "isbn": "978-84-339-6789-1",
+        "titulo": "Crónica de una Muerte Anunciada",
+        "autor": "Gabriel García Márquez",
+        "peso": 0.31,
+        "valor": 35000,
+        "genero": "Ficción",
+        "cantidad_disponible": 4,
+        "cantidad_total": 6
+    }
+]

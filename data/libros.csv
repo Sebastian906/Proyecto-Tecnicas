@@ -1,0 +1,11 @@
+isbn,titulo,autor,peso,valor,genero,cantidad_disponible,cantidad_total
+978-958-42-5168-5,Cien Años de Soledad,Gabriel García Márquez,0.45,45000,Ficción,3,5
+978-958-42-1234-7,El Amor en los Tiempos del Cólera,Gabriel García Márquez,0.52,48000,Ficción,2,3
+978-607-07-2345-8,Rayuela,Julio Cortázar,0.68,55000,Ficción,1,2
+978-950-07-3456-9,Ficciones,Jorge Luis Borges,0.35,38000,Ficción,4,4
+978-987-629-123-4,La Casa de los Espíritus,Isabel Allende,0.58,52000,Ficción,2,4
+978-84-376-0494-7,Don Quijote de la Mancha,Miguel de Cervantes,1.2,75000,Clásico,1,2
+978-968-16-5678-2,Pedro Páramo,Juan Rulfo,0.28,32000,Ficción,3,3
+978-950-731-234-5,El Túnel,Ernesto Sabato,0.22,28000,Ficción,5,5
+978-958-30-4567-8,La Vorágine,José Eustasio Rivera,0.48,42000,Clásico,2,3
+978-84-339-6789-1,Crónica de una Muerte Anunciada,Gabriel García Márquez,0.31,35000,Ficción,4,6
