@@ -14,8 +14,7 @@ class Libro:
         estante_id (int): El identificador del estante donde se encuentra el libro.
     """
 
-    def __init__(self, isbn: str, titulo: str, autor: str, peso: float, valor: float,
-                genero: str, cantidad_disponible: int, cantidad_total: int, estante_id: int):
+    def __init__(self, isbn, titulo, autor, peso, valor, genero, cantidad_disponible=1, cantidad_total=1, estante_id=None):
         self.isbn = isbn
         self.titulo = titulo
         self.autor = autor
