@@ -28,11 +28,6 @@ def ordenamiento_insercion(lista_libros, criterio='isbn', orden='asc'):
     
     Returns:
         list: La misma lista ordenada (modificada in-place).
-    
-    Example:
-        >>> libros = [libro1, libro2, libro3]
-        >>> ordenar_por_insercion(libros, criterio='isbn')
-        >>> # La lista ahora está ordenada por ISBN ascendente
     """
     n = len(lista_libros)
 
@@ -75,11 +70,6 @@ def insertar_libro_ordenado(lista_ordenada, libro_nuevo, criterio='isbn'):
     
     Returns:
         int: Índice donde se insertó el libro.
-    
-    Example:
-        >>> inventario = [libro1, libro2, libro3]  # Ordenados por ISBN
-        >>> insertar_libro_ordenado(inventario, libro_nuevo)
-        2  # Se insertó en la posición 2
     """
     valor_nuevo = obtener_valor_criterio(libro_nuevo, criterio)
     # Agregar al final
@@ -121,10 +111,6 @@ def verificar_orden(lista_libros, criterio='isbn', orden='asc'):
     
     Returns:
         bool: True si está ordenada correctamente.
-    
-    Example:
-        >>> verificar_orden(inventario, criterio='isbn', orden='asc')
-        True
     """
     if len(lista_libros) <= 1:
         return True

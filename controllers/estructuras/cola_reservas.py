@@ -9,13 +9,6 @@ class ColaReservas:
     Attributes:
         _items (list): Lista interna que almacena los elementos de la cola.
         _libro_isbn (str): ISBN del libro para el cual se gestionan las reservas.
-    
-    Example:
-        >>> cola = ColaReservas("978-123-456-789-0")
-        >>> cola.encolar(reserva1)
-        >>> cola.encolar(reserva2)
-        >>> primera = cola.ver_frente()  # reserva1 (primera en la cola)
-        >>> atendida = cola.desencolar()  # Remueve reserva1
     """
     
     def __init__(self, libro_isbn=None):

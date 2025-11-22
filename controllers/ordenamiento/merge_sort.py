@@ -31,10 +31,6 @@ def merge_sort(lista_libros, criterio='valor', orden='asc'):
     
     Returns:
         list: Nueva lista ordenada (no modifica la original).
-    
-    Example:
-        >>> libros_ordenados = merge_sort(libros, criterio='valor', orden='desc')
-        >>> # Reporte con libros más caros primero
     """
     # Caso base: lista vacía o con un solo elemento
     if len(lista_libros) <= 1:
