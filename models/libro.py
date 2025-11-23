@@ -25,6 +25,15 @@ class Libro:
         self.cantidad_total = cantidad_total
         self.estante_id = estante_id
 
+    def esta_disponible(self):
+        """
+        Verifica si el libro está disponible para préstamo.
+        
+        Returns:
+            bool: True si hay al menos una copia disponible, False en caso contrario.
+        """
+        return self.cantidad_disponible > 0
+
     def __str__(self):
         return f"Libro: {self.titulo} (ISBN: {self.isbn})"
     

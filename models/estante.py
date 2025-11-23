@@ -12,7 +12,7 @@ class Estante:
 
     PESO_MAXIMO = 8.0 # en kilogramos
 
-    def __init__(self, id: str, cantidad: int, peso_maximo: None):
+    def __init__(self, id: str, cantidad: int, peso_maximo: float = None):
         self.id = id
         self.cantidad = cantidad
         self.peso_maximo = peso_maximo if peso_maximo is not None else Estante.PESO_MAXIMO
