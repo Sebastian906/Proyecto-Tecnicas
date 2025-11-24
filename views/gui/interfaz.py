@@ -606,6 +606,10 @@ class BibliotecaGUI:
                     command=self.mostrar_estadisticas).pack(pady=10)
         ttk.Button(tab, text="Generar Reporte Inventario", 
                     command=self.generar_reporte).pack(pady=10)
+        ttk.Button(tab, text="Valor por Autor (Recursión Pila)", 
+                    command=self.valor_por_autor).pack(pady=10)
+        ttk.Button(tab, text="Peso por Autor (Recursión Cola)", 
+                    command=self.peso_por_autor).pack(pady=10)
     
     def mostrar_estadisticas(self):
         """Muestra estadísticas generales."""
@@ -629,6 +633,89 @@ class BibliotecaGUI:
             messagebox.showinfo("Éxito", "Reporte en reports/reporte_gui.txt")
         else:
             messagebox.showwarning("Advertencia", "Sin libros")
+    
+    def valor_por_autor(self):
+        """Calcula valor total de libros por autor usando recursión de pila."""
+        libros = self.gestor.obtener_todos_los_libros()
+        
+        if not libros:
+            messagebox.showwarning("Advertencia", "No hay libros disponibles")
+            return
+        
+        # Pedir el nombre del autor
+        from tkinter import simpledialog
+        autor = simpledialog.askstring("Valor por Autor", "Ingrese el nombre del autor:")
+        
+        if not autor:
+            return
+        
+        from controllers.recursion.valor_total import analizar_valor_por_autor
+        
+        analisis = analizar_valor_por_autor(libros, autor)
+        
+        if analisis['cantidad_libros'] == 0:
+            messagebox.showinfo("Resultado", f"No se encontraron libros del autor: {autor}")
+            return
+        
+        # Mostrar resultados en ventana emergente
+        msg = f"ANÁLISIS DE VALOR - RECURSIÓN DE PILA\n"
+        msg += f"Autor: {analisis['autor']}\n\n"
+        msg += f"Cantidad de libros: {analisis['cantidad_libros']}\n"
+        msg += f"Valor total: ${analisis['valor_total']:,.0f} COP\n"
+        msg += f"Valor promedio: ${analisis['valor_promedio']:,.0f} COP\n\n"
+        msg += f"Libros de {autor}:\n"
+        
+        for i, libro in enumerate(analisis['libros'], 1):
+            msg += f"\n{i}. {libro.titulo}\n"
+            msg += f"   ISBN: {libro.isbn}\n"
+            msg += f"   Valor: ${libro.valor:,.0f} COP\n"
+        
+        msg += f"\n\nEXPLICACIÓN (Recursión de Pila):\n"
+        msg += f"• El cálculo se realiza AL REGRESAR de las llamadas recursivas\n"
+        msg += f"• Los resultados se acumulan en la pila de llamadas del sistema\n"
+        msg += f"• No es tail-recursive (no optimizable por el compilador)"
+        
+        messagebox.showinfo("Valor por Autor", msg)
+    
+    def peso_por_autor(self):
+        """Calcula peso promedio de libros por autor usando recursión de cola."""
+        libros = self.gestor.obtener_todos_los_libros()
+        
+        if not libros:
+            messagebox.showwarning("Advertencia", "No hay libros disponibles")
+            return
+        
+        # Pedir el nombre del autor
+        from tkinter import simpledialog
+        autor = simpledialog.askstring("Peso por Autor", "Ingrese el nombre del autor:")
+        
+        if not autor:
+            return
+        
+        from controllers.recursion.peso_promedio import calcular_estadisticas_peso
+        
+        stats = calcular_estadisticas_peso(libros, autor)
+        
+        if stats['cantidad_libros'] == 0:
+            messagebox.showinfo("Resultado", f"No se encontraron libros del autor: {autor}")
+            return
+        
+        # Mostrar resultados en ventana emergente
+        msg = f"ANÁLISIS DE PESO - RECURSIÓN DE COLA\n"
+        msg += f"Autor: {stats['autor']}\n\n"
+        msg += f"Cantidad de libros: {stats['cantidad_libros']}\n"
+        msg += f"Peso total: {stats['peso_total']:.2f} Kg\n"
+        msg += f"Peso promedio: {stats['peso_promedio']:.2f} Kg\n"
+        msg += f"Peso mínimo: {stats['peso_minimo']:.2f} Kg\n"
+        msg += f"Peso máximo: {stats['peso_maximo']:.2f} Kg\n"
+        msg += f"\nEXPLICACIÓN (Recursión de Cola):\n"
+        msg += f"• El cálculo se realiza ANTES de la llamada recursiva\n"
+        msg += f"• Utiliza acumuladores para mantener el estado\n"
+        msg += f"• La llamada recursiva es lo ÚLTIMO que se ejecuta\n"
+        msg += f"• Puede ser optimizada (Tail Call Optimization)\n"
+        msg += f"• No acumula innecesariamente en la pila de llamadas"
+        
+        messagebox.showinfo("Peso por Autor", msg)
 
 def iniciar_interfaz_grafica():
     """Inicia la interfaz gráfica."""
