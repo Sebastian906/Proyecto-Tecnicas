@@ -534,11 +534,66 @@ class BibliotecaGUI:
     
     def analisis_peligroso(self):
         """Análisis de fuerza bruta."""
-        messagebox.showinfo("Info", "Análisis ejecutándose en consola...")
+        libros = self.gestor.obtener_todos_los_libros()
+        
+        if len(libros) < 4:
+            messagebox.showwarning("Advertencia", "Se necesitan al menos 4 libros para el análisis")
+            return
+        
+        from controllers.resolucion.fuerza_bruta import encontrar_combinaciones
+        
+        combinaciones_peligrosas = encontrar_combinaciones(libros, num_libros=4, peso_maximo=8.0)
+        
+        if not combinaciones_peligrosas:
+            messagebox.showinfo("Resultado", "No se encontraron combinaciones peligrosas (peso > 8 Kg)")
+            return
+        
+        # Mostrar resultados en ventana emergente
+        msg = "ANÁLISIS DE FUERZA BRUTA - COMBINACIONES PELIGROSAS\n"
+        msg += f"Total de combinaciones peligrosas encontradas: {len(combinaciones_peligrosas)}\n\n"
+        msg += "Mostrando primeras 10 combinaciones:\n"
+        
+        for i, (libros_combo, peso_total, exceso) in enumerate(combinaciones_peligrosas[:10], 1):
+            msg += f"\n[{i}] Peso: {peso_total:.2f} Kg (Excede por {exceso:.2f} Kg)\n"
+            for j, libro in enumerate(libros_combo, 1):
+                msg += f"    {j}. {libro.titulo[:40]}\n"
+                msg += f"       Peso: {libro.peso} Kg | Valor: ${libro.valor:,.0f}\n"
+        
+        if len(combinaciones_peligrosas) > 10:
+            msg += f"\n... y {len(combinaciones_peligrosas) - 10} combinaciones más"
+        
+        messagebox.showinfo("Fuerza Bruta", msg)
     
     def optimizacion_estanteria(self):
         """Optimización con backtracking."""
-        messagebox.showinfo("Info", "Optimización ejecutándose en consola...")
+        libros = self.gestor.obtener_todos_los_libros()
+        
+        if not libros:
+            messagebox.showwarning("Advertencia", "No hay libros disponibles")
+            return
+        
+        from controllers.resolucion.backtracking import optimizar_estanteria
+        
+        mejor = optimizar_estanteria(libros, peso_maximo=8.0, mostrar_exploracion=False)
+        
+        if not mejor.libros:
+            messagebox.showinfo("Resultado", "No se encontró una combinación válida")
+            return
+        
+        # Mostrar resultados en ventana emergente
+        msg = "BACKTRACKING - SOLUCIÓN ÓPTIMA DE ESTANTERÍA\n"
+        msg += f"Número de libros: {len(mejor.libros)}\n"
+        msg += f"Peso total: {mejor.peso_total:.2f} Kg / 8.0 Kg\n"
+        msg += f"Valor total: ${mejor.valor_total:,.0f} COP\n"
+        msg += f"Espacio disponible: {8.0 - mejor.peso_total:.2f} Kg\n"
+        msg += "\nLibros seleccionados:\n"
+        
+        for i, libro in enumerate(mejor.libros, 1):
+            msg += f"\n{i}. {libro.titulo}\n"
+            msg += f"   ISBN: {libro.isbn}\n"
+            msg += f"   Peso: {libro.peso} Kg | Valor: ${libro.valor:,.0f}\n"
+        
+        messagebox.showinfo("Backtracking", msg)
     
     #  Interfaz Reportes
     
