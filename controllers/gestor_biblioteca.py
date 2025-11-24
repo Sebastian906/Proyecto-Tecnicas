@@ -314,6 +314,10 @@ class GestorBiblioteca:
         if not libro:
             return False, "Libro no encontrado"
         
+        # Solo reservar si el libro está agotado 
+        if libro.cantidad_disponible > 0:
+            return False, f"No se puede reservar. El libro tiene {libro.cantidad_disponible} copia(s) disponible(s). Las reservas solo se permiten para libros agotados (stock = 0)"
+        
         # Crear cola si no existe
         if isbn not in self.colas_reservas:
             self.colas_reservas[isbn] = ColaReservas(isbn)
