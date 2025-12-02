@@ -1,27 +1,27 @@
 """
-Este algoritmo encuentra todas las combinaciones posibles que 
-superan el umbral de riesgo de 8 Kg. (estantería deficiente).
+This algorithm finds all possible combinations that 
+exceed the risk threshold of 8 Kg. (deficient shelving).
 """
 
 from itertools import combinations
 
 def encontrar_combinaciones(lista_libros, num_libros=4, peso_maximo=8.0):
     """
-    Encuentra todas las combinaciones de libros que exceden el peso máximo.
+    Finds all combinations of books that exceed the maximum weight.
     
-    Este algoritmo de fuerza bruta explora TODAS las combinaciones posibles
-    de 'num_libros' libros y retorna aquellas cuyo peso total supera el
-    umbral de riesgo (8 Kg).
+    This brute force algorithm explores ALL possible combinations
+    of 'num_libros' books and returns those whose total weight exceeds the
+    risk threshold (8 Kg).
     
     Args:
-        lista_libros (list): Lista de objetos Libro disponibles.
-        num_libros (int, optional): Cantidad de libros por combinación. Default: 4.
-        peso_maximo (float, optional): Peso máximo permitido en Kg. Default: 8.0.
+        lista_libros (list): List of available Book objects.
+        num_libros (int, optional): Number of books per combination. Default: 4.
+        peso_maximo (float, optional): Maximum allowed weight in Kg. Default: 8.0.
     
     Returns:
-        list: Lista de tuplas, cada una contiene:
+        list: List of tuples, each containing:
             - (libros_tuple, peso_total, exceso)
-            donde libros_tuple es una tupla de 4 libros.
+            where libros_tuple is a tuple of 4 books.
     """
     combinaciones_peligrosas = []
     total_combinaciones = 0
@@ -45,18 +45,18 @@ def encontrar_combinaciones(lista_libros, num_libros=4, peso_maximo=8.0):
 
 def demostrar_exploracion_fuerza_bruta(lista_libros, num_libros=4, peso_maximo=8.0, mostrar_primeras=15):
     """
-    Demuestra paso a paso la exploración exhaustiva de fuerza bruta.
+    Demonstrates step-by-step the exhaustive brute-force exploration.
     
-    Imprime en consola el proceso de exploración para fines educativos.
+    Prints the exploration process to the console for educational purposes.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        num_libros (int, optional): Cantidad de libros. Default: 4.
-        peso_maximo (float, optional): Peso máximo en Kg. Default: 8.0.
-        mostrar_primeras (int, optional): Cuántas combinaciones mostrar. Default: 15.
+        lista_libros (list): List of Book objects.
+        num_libros (int, optional): Number of books. Default: 4.
+        peso_maximo (float, optional): Maximum weight in Kg. Default: 8.0.
+        mostrar_primeras (int, optional): How many combinations to show. Default: 15.
     
     Returns:
-        list: Lista de combinaciones peligrosas encontradas.
+        list: List of dangerous combinations found.
     """
     print("Exploración Exhaustiva - Fuerza Bruta")
     print(f"\nParámetros:")

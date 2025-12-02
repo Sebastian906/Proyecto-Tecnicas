@@ -1,30 +1,30 @@
 class InventarioOrdenado:
     """
-    Gestiona el inventario ordenado de los libros en la biblioteca (De acuerdo al ISBN).
+    Manage the organized inventory of books in the library (According to ISBN).
 
-    Al agregarse un libro, se usa algoritmo de inserción para mantener el orden por ISBN.
+    When a book is added, an insertion algorithm is used to maintain order by ISBN.
 
-    Atributos:
-        libros (list): Lista que contiene los libros en el inventario ordenado por ISBN.
+    Attributes:
+        libros (list): List containing the books in the inventory ordered by ISBN.
     """
 
     def __init__(self):
         """
-        Inicia el inventario general con una lista vacía de libros.
+        Initializes the general inventory with an empty list of books.
         """
         self.libros = []
 
     def agregar_libro(self, libro):
         """
-        Agrega un libro al inventario ordenado por ISBN.
+        Adds a book to the inventory ordered by ISBN.
 
-        Se usa el ordenamiento por inserción para mantener la lista ordenada.
+        An insertion sort algorithm is used to maintain the list ordered.
 
         Args:
-            libro (Libro): Objeto Libro a agregar al inventario.
+            libro (Libro): Book object to add to the inventory.
 
         Returns:
-            bool: True si el libro fue agregado exitosamente. False si el ISBN ya existe en el inventario.
+            bool: True if the book was added successfully. False if the ISBN already exists in the inventory.
         """
         # Verificar que el ISBN no exista en el inventario
         if self.buscar_por_isbn(libro.isbn):
@@ -43,13 +43,13 @@ class InventarioOrdenado:
     
     def agregar_libros(self, lista_libros):
         """
-        Agrega múltiples libros al inventario ordenado por ISBN.
+        Adds multiple books to the inventory ordered by ISBN.
 
         Args:
-            lista_libros (list): Lista de objetos Libro a agregar al inventario.
+            lista_libros (list): List of Book objects to add to the inventory.
 
         Returns:
-            int: Número de libros agregados exitosamente.
+            int: Number of books successfully added.
         """
         agregados = 0
         for libro in lista_libros:
@@ -59,12 +59,12 @@ class InventarioOrdenado:
     
     def eliminar_libro(self, isbn):
         """
-        Elimina un libro del inventario ordenado por su ISBN.
+        Removes a book from the inventory ordered by its ISBN.
 
         Args:
-            isbn (str): ISBN del libro a eliminar.
+            isbn (str): ISBN of the book to remove.
         Returns:
-            bool: True si se eliminó, False si no se encontró el libro.
+            bool: True if the book was removed, False if the book was not found.
         """
         # Se usa búsqueda binaria para encontrar el libro
         indice = self.buscar_indice_binario(isbn)
@@ -75,13 +75,13 @@ class InventarioOrdenado:
     
     def buscar_por_isbn(self, isbn):
         """
-        Busca un libro en el inventario por su ISBN usando búsqueda binaria.
+        Searches for a book in the inventory by its ISBN using binary search.
 
         Args:
-            isbn (str): ISBN del libro a buscar.
+            isbn (str): ISBN of the book to search for.
 
         Returns:
-            Libro|None: Objeto Libro si se encuentra, None si no se encuentra.
+            Libro|None: Book object if found, None if not found.
         """
         indice = self.buscar_indice_binario(isbn)
         if indice != -1:
@@ -90,13 +90,13 @@ class InventarioOrdenado:
     
     def buscar_indice_binario(self, isbn):
         """
-        Busca el índice de un libro en la lista usando búsqueda binaria.
+        Searches for the index of a book in the list using binary search.
 
         Args:
-            isbn (str): ISBN del libro a buscar.
+            isbn (str): ISBN of the book to search for.
 
         Returns:
-            int: Índice del libro si se encuentra, -1 si no se encuentra.
+            int: Index of the book if found, -1 if not found.
         """
         izquierda = 0
         derecha = len(self.libros) - 1
@@ -114,43 +114,43 @@ class InventarioOrdenado:
     
     def obtener_libros(self):
         """
-        Obtiene la lista completa de libros en el inventario ordenado.
+        Obtains the complete list of books in the ordered inventory.
 
         Returns:
-            list: Lista de objetos Libro en el inventario.
+            list: List of Book objects in the inventory.
         """
         return self.libros
 
     def cantidad_libros(self):
         """
-        Obtiene la cantidad total de libros en el inventario ordenado.
+        Obtains the total number of books in the ordered inventory.
 
         Returns:
-            int: Cantidad de libros en el inventario.
+            int: Number of books in the inventory.
         """
         return len(self.libros)
     
     def estar_vacio(self):
         """
-        Verifica si el inventario ordenado está vacío.
+        Checks if the ordered inventory is empty.
 
         Returns:
-            bool: True si el inventario está vacío, False en caso contrario.
+            bool: True if the inventory is empty, False otherwise.
         """
         return len(self.libros) == 0
     
     def limpiar_inventario(self):
         """
-        Limpia todos los libros del inventario ordenado.
+        Clears all books from the ordered inventory.
         """
         self.libros.clear()
 
     def verificar_orden(self):
         """
-        Verifica si la lista de libros está ordenada por ISBN.
+        Checks if the list of books is ordered by ISBN.
 
         Returns:
-            bool: True si la lista está ordenada, False en caso contrario.
+            bool: True if the list is ordered, False otherwise.
         """
         for i in range(1, len(self.libros)):
             if self.libros[i].isbn < self.libros[i-1].isbn:
@@ -159,13 +159,13 @@ class InventarioOrdenado:
     
     def obtener_por_indice(self, indice):
         """
-        Obtiene un libro por su índice en la lista ordenada.
+        Obtains a book by its index in the ordered list.
 
         Args:
-            indice (int): Índice del libro a obtener.
+            indice (int): Index of the book to obtain.
 
         Returns:
-            Libro|None: Objeto Libro si el índice es válido, None en caso contrario.
+            Libro|None: Book object if the index is valid, None otherwise.
         """
         if 0 <= indice < len(self.libros):
             return self.libros[indice]

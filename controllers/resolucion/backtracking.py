@@ -1,16 +1,16 @@
 """
-Este algoritmo encuentra la combinación de libros que maximiza 
-el valor total sin exceder el peso máximo de 8 Kg.
+This algorithm finds the combination of books that maximizes the total 
+value without exceeding the maximum weight of 8 kg.
 """
 
 class SolucionEstanteria:
     """
-    Clase para almacenar una solución de estantería.
+    Class to store a shelving solution.
     
     Attributes:
-        libros (list): Lista de libros en la solución.
-        peso_total (float): Peso total de los libros.
-        valor_total (float): Valor total de los libros.
+        libros (list): List of books in the solution.
+        peso_total (float): Total weight of the books.
+        valor_total (float): Total value of the books.
     """
     def __init__(self, libros=None, peso_total=0.0, valor_total=0.0):
         self.libros = libros if libros else []
@@ -18,13 +18,13 @@ class SolucionEstanteria:
         self.valor_total = valor_total
     
     def agregar_libro(self, libro):
-        """Agrega un libro a la solución."""
+        """Adds a book to the solution."""
         self.libros.append(libro)
         self.peso_total += libro.peso
         self.valor_total += libro.valor
 
     def quitar_libro(self, libro):
-        """Quita un libro de la solución por backtracking."""
+        """Removes a book from the solution using backtracking."""
         if self.libros:
             libro = self.libros.pop()
             self.peso_total -= libro.peso
@@ -33,7 +33,7 @@ class SolucionEstanteria:
         return None
     
     def copia(self):
-        """Crea una copia de la solución actual."""
+        """Creates a copy of the current solution."""
         return SolucionEstanteria(
             libros=self.libros.copy(),
             peso_total=self.peso_total,
@@ -45,22 +45,21 @@ class SolucionEstanteria:
 
 def optimizar_estanteria(lista_libros, peso_maximo=8.0, mostrar_exploracion=False, limite_output=50):
     """
-    Encuentra la combinación óptima de libros que maximiza el valor total
-    sin exceder el peso máximo usando backtracking.
+    Finds the optimal combination of books that maximizes the total value
+    without exceeding the maximum weight using backtracking.
     
-    Explora recursivamente dos opciones para cada libro: incluirlo o no incluirlo.
-    Mantiene la mejor solución encontrada y retorna al finalizar la exploración.
-    
+    Recursively explores two options for each book: include it or not include it.
+    Maintains the best solution found and returns it after exploration.
     Args:
-        lista_libros (list): Lista de objetos Libro disponibles.
-        peso_maximo (float, optional): Peso máximo en Kg. Default: 8.0.
-        mostrar_exploracion (bool, optional): Si True, imprime la exploración.
+        lista_libros (list): List of available Book objects.
+        peso_maximo (float, optional): Maximum weight in Kg. Default: 8.0.
+        mostrar_exploracion (bool, optional): If True, prints the exploration.
             Default: False.
-        limite_output (int, optional): Máximo de líneas de exploración a mostrar.
+        limite_output (int, optional): Maximum number of exploration lines to show.
             Default: 50.
     
     Returns:
-        SolucionEstanteria: La mejor solución encontrada.
+        SolucionEstanteria: The best solution found.
     """
     mejor_solucion = SolucionEstanteria()
     solucion_actual = SolucionEstanteria()
@@ -69,14 +68,14 @@ def optimizar_estanteria(lista_libros, peso_maximo=8.0, mostrar_exploracion=Fals
 
     def backtrack(indice):
         """
-        Función recursiva de backtracking.
+        Recursive backtracking function.
         
-        Explora dos ramas para cada libro:
-        1. Incluir el libro si cabe en el peso máximo
-        2. No incluir el libro (siempre se explora)
+        Explores two branches for each book:
+        1. Include the book if it fits within the maximum weight
+        2. Do not include the book (always explored)
         
         Args:
-            indice (int): Índice del libro actual a considerar.
+            indice (int): Index of the current book to consider.
         """
         nonlocal mejor_solucion
         nodos_explorados[0] += 1
@@ -110,18 +109,18 @@ def optimizar_estanteria(lista_libros, peso_maximo=8.0, mostrar_exploracion=Fals
 
 def demostrar_backtracking(lista_libros, peso_maximo=8.0):
     """
-    Demuestra paso a paso el proceso de backtracking para optimización de estantería.
+    Demonstrates step-by-step the backtracking process for shelf optimization.
     
-    Ejecuta el algoritmo de backtracking que explora recursivamente todas
-    las combinaciones de libros para encontrar aquella que maximiza el
-    valor total sin exceder el peso máximo.
+    Executes the backtracking algorithm that recursively explores all
+    combinations of books to find the one that maximizes the
+    total value without exceeding the maximum weight.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        peso_maximo (float, optional): Peso máximo en Kg. Default: 8.0.
+        lista_libros (list): List of Book objects.
+        peso_maximo (float, optional): Maximum weight in Kg. Default: 8.0.
     
     Returns:
-        SolucionEstanteria: La mejor solución encontrada.
+        SolucionEstanteria: The best solution found.
     """
     print("Backtracking - Optimización de Estantería")
     print(f"\nParámetros:")

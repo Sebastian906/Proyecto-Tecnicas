@@ -1,11 +1,11 @@
 """
-Este paquete contiene las implementaciones de estructuras de datos
-especializadas para el Sistema de Gestión de Bibliotecas:
+This package contains the implementations of specialized data
+structures for the Library Management System.:
 
-- PilaHistorial: Estructura LIFO para historial de préstamos por usuario
-- ColaReservas: Estructura FIFO para lista de espera de libros agotados
+- PilaHistorial: LIFO structure for user loan history
+- ColaReservas: FIFO structure for waitlist of out-of-stock books
 
-Uso:
+Use:
     from controllers.estructuras import PilaHistorial, ColaReservas
     
     pila = PilaHistorial("U001")

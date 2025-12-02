@@ -1,12 +1,11 @@
 """
-Este paquete contiene implementaciones de algoritmos de búsqueda
-adaptados para trabajar con objetos Libro:
+This package contains implementations of search algorithms
+adapted to work with Book objects:
 
-- Búsqueda Lineal: Para inventario general
+- Linear Search (Búsqueda Lineal): For general inventory
 
-- Búsqueda Binaria: Para inventario ordenado 
-
-Uso:
+- Binary Search (Búsqueda Binaria): For ordered inventory 
+Use:
     from controllers.busqueda import (
         busqueda_lineal_por_titulo,
         busqueda_binaria_por_isbn

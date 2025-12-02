@@ -1,24 +1,23 @@
 """
-Este algoritmo utiliza recursión de pila para calcular el valor total
-de todos los libros de un autor específico. El trabajo se realiza al
-"regresar" de las llamadas recursivas.
+This algorithm uses stack recursion to calculate the total value
+of all books by a specific author. The work is done when "returning"
+from the recursive calls.
 """
 
 def calcular_valor_total(lista_libros, autor, indice=0):
     """
-    Calcula el valor total de todos los libros de un autor usando recursión de pila.
+    Calculates the total value of all books by an author using stack recursion.
     
-    Esta función demuestra la recursión de pila donde el cálculo se realiza
-    al REGRESAR de las llamadas recursivas. El resultado se acumula en la pila
-    de llamadas.
+    This function demonstrates stack recursion where the calculation is done
+    when RETURNING from recursive calls. The result accumulates in the call stack.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Nombre del autor a buscar.
-        indice (int, optional): Índice actual en la lista. Default: 0.
+        lista_libros (list): List of Book objects.
+        autor (str): Name of the author to search for.
+        indice (int, optional): Current index in the list. Default: 0.
     
     Returns:
-        float: Valor total acumulado de los libros del autor.
+        float: Total accumulated value of the author's books.
     """
     # Caso base: llegamos al final de la lista
     if indice >= len(lista_libros):
@@ -36,19 +35,18 @@ def calcular_valor_total(lista_libros, autor, indice=0):
 
 def calcular_valor_total_con_demostracion(lista_libros, autor, indice=0, nivel=0):
     """
-    Versión que demuestra el proceso de recursión de pila en consola.
+    Version that demonstrates the stack recursion process in the console.
     
-    Muestra cómo se construye la pila de llamadas y cómo se van
-    acumulando los valores al regresar.
+    Shows how the call stack is built and how values accumulate when returning.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Nombre del autor a buscar.
-        indice (int, optional): Índice actual. Default: 0.
-        nivel (int, optional): Nivel de profundidad (para indentación). Default: 0.
+        lista_libros (list): List of Book objects.
+        autor (str): Name of the author to search for.
+        indice (int, optional): Current index. Default: 0.
+        nivel (int, optional): Depth level (for indentation). Default: 0.
     
     Returns:
-        float: Valor total calculado.
+        float: Calculated total value.
     """
     margen = "  " * nivel
     # Caso base
@@ -77,15 +75,15 @@ def calcular_valor_total_con_demostracion(lista_libros, autor, indice=0, nivel=0
 
 def contar_libros_autor(lista_libros, autor, indice=0):
     """
-    Cuenta cuántos libros tiene un autor (auxiliar).
+    Counts how many books an author has (helper).
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Nombre del autor.
-        indice (int, optional): Índice actual. Default: 0.
+        lista_libros (list): List of Book objects.
+        autor (str): Name of the author.
+        indice (int, optional): Current index. Default: 0.
     
     Returns:
-        int: Cantidad de libros del autor.
+        int: Number of books by the author.
     """
     if indice >= len(lista_libros):
         return 0
@@ -99,15 +97,15 @@ def contar_libros_autor(lista_libros, autor, indice=0):
 
 def obtener_libros_autor(lista_libros, autor, indice=0):
     """
-    Obtiene todos los libros de un autor usando recursión de pila.
+    Obtains all books by an author using stack recursion.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Nombre del autor.
-        indice (int, optional): Índice actual. Default: 0.
+        lista_libros (list): List of Book objects.
+        autor (str): Name of the author.
+        indice (int, optional): Current index. Default: 0.
     
     Returns:
-        list: Lista de libros del autor.
+        list: List of books by the author.
     """
     if indice >= len(lista_libros):
         return []
@@ -122,14 +120,14 @@ def obtener_libros_autor(lista_libros, autor, indice=0):
 
 def analizar_valor_por_autor(lista_libros, autor):
     """
-    Análisis completo del valor de libros de un autor usando recursión.
+    Complete analysis of the value of books by an author using recursion.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Nombre del autor a analizar.
+        lista_libros (list): List of Book objects.
+        autor (str): Name of the author to analyze.
     
     Returns:
-        dict: Diccionario con análisis completo.
+        dict: Dictionary with complete analysis.
     """
     # Calcular usando recursión de pila
     valor_total = calcular_valor_total(lista_libros, autor)
@@ -148,14 +146,14 @@ def analizar_valor_por_autor(lista_libros, autor):
 
 def demostrar_recursion_pila(lista_libros, autor):
     """
-    Demuestra visualmente el proceso de recursión de pila.
+    Visually demonstrate the stack recursion process.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Nombre del autor.
+        lista_libros (list): List of Book objects.
+        autor (str): Name of the author.
     
     Returns:
-        float: Valor total calculado.
+        float: Calculated total value.
     """
     print("Recursión de Pila - Cálculo de Valor Total")
     print(f"\nAutor buscado: {autor}")

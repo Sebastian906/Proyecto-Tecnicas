@@ -1,21 +1,21 @@
 """
-Este algoritmo se utiliza para buscar libros por Título o Autor en el
-Inventario General (lista desordenada). Recorre secuencialmente toda
-la colección hasta encontrar coincidencias.
+This algorithm is used to search for books by Title or Author in the
+General Inventory (unordered list). . It sequentially traverses the entire
+collection until it finds matches.
 """
 
 def busqueda_lineal_por_isbn(lista_libros, isbn):
     """
-    Busca un libro por ISBN usando búsqueda lineal.
+    Search for a book by ISBN using linear search.
     
-    Recorre secuencialmente la lista hasta encontrar el ISBN buscado.
+    Sequentially traverses the list until the searched ISBN is found.
     
     Args:
-        lista_libros (list): Lista de objetos Libro (puede estar desordenada).
-        isbn (str): ISBN del libro a buscar.
+        lista_libros (list): List of Book objects (can be unordered).
+        isbn (str): ISBN of the book to search for.
     
     Returns:
-        tuple: (libro, indice) si se encuentra, (None, -1) si no se encuentra.
+        tuple: (libro, índice) if found, (None, -1) if not found.
     """
     for indice, libro in enumerate(lista_libros):
         if libro.isbn == isbn:
@@ -24,18 +24,18 @@ def busqueda_lineal_por_isbn(lista_libros, isbn):
 
 def busqueda_lineal_por_titulo(lista_libros, titulo, parcial=True):
     """
-    Busca libros por título usando búsqueda lineal.
+    Search for books by title using linear search.
     
-    Puede buscar coincidencias exactas o parciales (substring).
+    Can search for exact or partial matches (substring).
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        titulo (str): Título o parte del título a buscar.
-        parcial (bool, optional): Si True, busca coincidencias parciales.
+        lista_libros (list): List of Book objects.
+        titulo (str): Title or part of the title to search for.
+        parcial (bool, optional): If True, searches for partial matches.
             Default: True.
     
     Returns:
-        list: Lista de tuplas (libro, indice) con coincidencias encontradas.
+        list: List of tuples (libro, índice) with found matches.
     """
     resultados = []
     titulo_busqueda = titulo.lower()
@@ -53,18 +53,18 @@ def busqueda_lineal_por_titulo(lista_libros, titulo, parcial=True):
 
 def busqueda_lineal_por_autor(lista_libros, autor, parcial=True):
     """
-    Busca libros por autor usando búsqueda lineal.
+    Search for books by author using linear search.
     
-    Puede buscar coincidencias exactas o parciales (substring).
+    Can search for exact or partial matches (substring).
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Autor o parte del nombre del autor a buscar.
-        parcial (bool, optional): Si True, busca coincidencias parciales.
+        lista_libros (list): List of Book objects.
+        autor (str): Author or part of the author's name to search for.
+        parcial (bool, optional): If True, searches for partial matches.
             Default: True.
     
     Returns:
-        list: Lista de tuplas (libro, indice) con coincidencias encontradas.
+        list: List of tuples (libro, índice) with found matches.
     """
     resultados = []
     autor_busqueda = autor.lower()
@@ -82,17 +82,17 @@ def busqueda_lineal_por_autor(lista_libros, autor, parcial=True):
 
 def busqueda_lineal_por_criterio(lista_libros, criterio, valor, parcial=False):
     """
-    Búsqueda lineal genérica por cualquier atributo del libro.
+    Generic linear search by any attribute of the book.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        criterio (str): Atributo por el cual buscar 
+        lista_libros (list): List of Book objects.
+        criterio (str): Attribute to search by 
             ('isbn', 'titulo', 'autor', 'genero', etc.).
-        valor: Valor a buscar (tipo depende del atributo).
-        parcial (bool, optional): Solo aplica para strings. Default: False.
+        valor: Value to search for (type depends on the attribute).
+        parcial (bool, optional): Only applies to strings. Default: False.
     
     Returns:
-        list: Lista de tuplas (libro, indice) con coincidencias.
+        list: List of tuples (libro, índice) with found matches.
     """
     resultados = []
     for indice, libro in enumerate(lista_libros):
@@ -111,18 +111,18 @@ def busqueda_lineal_por_criterio(lista_libros, criterio, valor, parcial=False):
 
 def busqueda_lineal_recursiva(lista_libros, isbn, indice=0):
     """
-    Búsqueda lineal recursiva por ISBN.
+    Recursive linear search by ISBN.
     
-    Implementación recursiva del algoritmo de búsqueda lineal.
-    Útil para demostración académica.
+    Recursive implementation of the linear search algorithm.
+    Useful for academic demonstration.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        isbn (str): ISBN a buscar.
-        indice (int, optional): Índice actual de búsqueda. Default: 0.
+        lista_libros (list): List of Book objects.
+        isbn (str): ISBN to search for.
+        indice (int, optional): Current search index. Default: 0.
     
     Returns:
-        tuple: (libro, indice) si se encuentra, (None, -1) si no se encuentra.
+        tuple: (libro, indice) if found, (None, -1) if not found.
     """
     # Caso base: llegamos al final de la lista sin encontrar nada
     if indice >= len(lista_libros):
@@ -135,13 +135,13 @@ def busqueda_lineal_recursiva(lista_libros, isbn, indice=0):
 
 def contar_comparaciones_lineal(lista_libros, isbn):
     """
-    Cuenta el número de comparaciones realizadas durante búsqueda lineal.
+    Count the number of comparisons performed during linear search.
     
-    Útil para análisis de complejidad y demostración del algoritmo.
+    Useful for complexity analysis and algorithm demonstration.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        isbn (str): ISBN a buscar.
+        lista_libros (list): List of Book objects.
+        isbn (str): ISBN to search for.
     
     Returns:
         tuple: (libro, indice, comparaciones)
@@ -155,14 +155,14 @@ def contar_comparaciones_lineal(lista_libros, isbn):
 
 def busqueda_multiple(lista_libros, **criterios):
     """
-    Busca libros que cumplan múltiples criterios simultáneamente.
+    Search for books that meet multiple criteria simultaneously.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        **criterios: Pares clave=valor para filtrar.
+        lista_libros (list): List of Book objects.
+        **criterios: Key=value pairs to filter by.
     
     Returns:
-        list: Lista de tuplas (libro, indice) que cumplen todos los criterios.
+        list: List of tuples (libro, indice) that meet all criteria.
     """
     resultados = []
     for indice, libro in enumerate(lista_libros):

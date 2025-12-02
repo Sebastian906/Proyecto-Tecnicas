@@ -1,10 +1,10 @@
 """
-Este algoritmo se utiliza para generar Reportes Globales de inventario
-ordenados por el atributo Valor (COP). Es eficiente para listas grandes
-y garantiza un rendimiento O(n log n).
+This algorithm is used to generate Global Inventory Reports
+ordered by the Value attribute (COP). It is efficient for large lists
+and guarantees a performance of O(n log n).
 
-Complejidad Temporal: O(n log n) en todos los casos
-Complejidad Espacial: O(n) - requiere espacio adicional para la mezcla
+Time Complexity: O(n log n) in all cases
+Space Complexity: O(n) - requires additional space for merging
 """
 
 import csv
@@ -16,21 +16,21 @@ from models import libro
 
 def merge_sort(lista_libros, criterio='valor', orden='asc'):
     """
-    Ordena una lista de libros usando el algoritmo Merge Sort.
+    Sorts a list of books using the Merge Sort algorithm.
 
-    Este algoritmo divide recursivamente la lista en mitades, 
-    las ordena y luego las combina. Eficiente para listas grandes.
+    This algorithm recursively divides the list into halves, 
+    sorts them, and then merges them. Efficient for large lists.
     
     Args:
-        lista_libros (list): Lista de objetos Libro a ordenar.
-        criterio (str, optional): Atributo por el cual ordenar.
-            Opciones: 'isbn', 'titulo', 'autor', 'peso', 'valor'.
-            Default: 'valor'.
-        orden (str, optional): 'asc' para ascendente, 'desc' para descendente.
+        lista_libros (list): List of Book objects to sort.
+        criterio (str, optional): Attribute by which to sort.
+            Options: 'isbn', 'title', 'author', 'weight', 'value'.
+            Default: 'value'.
+        orden (str, optional): 'asc' for ascending, 'desc' for descending.
             Default: 'asc'.
     
     Returns:
-        list: Nueva lista ordenada (no modifica la original).
+        list: New sorted list (does not modify the original).
     """
     # Caso base: lista vacía o con un solo elemento
     if len(lista_libros) <= 1:
@@ -47,16 +47,16 @@ def merge_sort(lista_libros, criterio='valor', orden='asc'):
 
 def merge(izquierda, derecha, criterio, orden):
     """
-    Combina dos listas ordenadas en una sola lista ordenada.
+    Combines two sorted lists into a single sorted list.
     
     Args:
-        izquierda (list): Primera sublista ordenada.
-        derecha (list): Segunda sublista ordenada.
-        criterio (str): Atributo por el cual están ordenadas.
-        orden (str): 'asc' o 'desc'.
+        izquierda (list): First sorted sublist.
+        derecha (list): Second sorted sublist.
+        criterio (str): Attribute by which the lists are sorted.
+        orden (str): 'asc' or 'desc'.
     
     Returns:
-        list: Lista combinada y ordenada.
+        list: Combined and sorted list.
     """
     resultado = []
     i = j = 0
@@ -84,14 +84,14 @@ def merge(izquierda, derecha, criterio, orden):
 
 def obtener_valor_criterio(libro, criterio):
     """
-    Obtiene el valor del atributo especificado de un libro.
+    Obtains the value of the specified attribute from a book.
     
     Args:
-        libro (Libro): Objeto Libro.
-        criterio (str): Nombre del atributo.
+        libro (Libro): Book object.
+        criterio (str): Name of the attribute.
     
     Returns:
-        any: Valor del atributo.
+        any: Value of the attribute.
     """
     if not hasattr(libro, criterio):
         raise AttributeError(f"El libro no tiene el atributo '{criterio}'")
@@ -99,22 +99,22 @@ def obtener_valor_criterio(libro, criterio):
 
 def generar_reporte_global(lista_libros, criterio='valor', orden='desc', formato='txt', ruta_archivo=None):
     """
-    Genera un reporte global de inventario ordenado por un criterio.
+    Generates a comprehensive inventory report sorted by a criterion.
     
-    Este método utiliza Merge Sort para ordenar los libros y luego
-    genera un reporte que puede guardarse en archivo.
+    This method uses Merge Sort to sort the books and then
+    generates a report that can be saved to a file.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        criterio (str, optional): Atributo por el cual ordenar. Default: 'valor'.
-        orden (str, optional): 'asc' o 'desc'. Default: 'desc'.
-        formato (str, optional): Formato del reporte: 'txt', 'csv', 'json'.
+        lista_libros (list): List of Book objects.
+        criterio (str, optional): Attribute by which to sort. Default: 'value'.
+        orden (str, optional): 'asc' or 'desc'. Default: 'desc'.
+        formato (str, optional): Report format: 'txt', 'csv', 'json'.
             Default: 'txt'.
-        ruta_archivo (str, optional): Ruta donde guardar el reporte.
-            Si es None, se genera automáticamente en la carpeta reports/.
+        ruta_archivo (str, optional): Path to save the report.
+            If None, it is automatically generated in the reports/ folder.
     
     Returns:
-        str|list: Reporte generado (formato depende del tipo).
+        str|list: Generated report (format depends on the type).
     """
     # Crear carpeta reports/ si no existe y se va a guardar archivo
     reports = 'reports'
@@ -158,15 +158,15 @@ def generar_reporte_global(lista_libros, criterio='valor', orden='desc', formato
 
 def _generar_reporte_txt(libros_ordenados, criterio, orden):
     """
-    Genera un reporte en formato de texto plano.
+    Generates a plain text report.
     
     Args:
-        libros_ordenados (list): Lista de libros ya ordenada.
-        criterio (str): Criterio de ordenamiento usado.
-        orden (str): Orden aplicado ('asc' o 'desc').
+        libros_ordenados (list): Already sorted list of books.
+        criterio (str): Sorting criterion used.
+        orden (str): Applied order ('asc' or 'desc').
     
     Returns:
-        str: Reporte formateado como texto.
+        str: Report formatted as text.
     """
     lineas = []
     lineas.append("REPORTE GLOBAL DE INVENTARIO")
@@ -200,14 +200,14 @@ def _generar_reporte_txt(libros_ordenados, criterio, orden):
 
 def _generar_reporte_csv(libros_ordenados, ruta_archivo):
     """
-    Genera un reporte en formato CSV.
+    Generates a report in CSV format.
     
     Args:
-        libros_ordenados (list): Lista de libros ya ordenada.
-        ruta_archivo (str): Ruta donde guardar el archivo CSV.
+        libros_ordenados (list): Book list already sorted.
+        ruta_archivo (str): Path to save the CSV file.
     
     Returns:
-        list: Lista de diccionarios con los datos.
+        list: List of dictionaries with the data.
     """
     if not ruta_archivo:
         ruta_archivo = f"reporte_inventario_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
@@ -233,14 +233,14 @@ def _generar_reporte_csv(libros_ordenados, ruta_archivo):
 
 def _generar_reporte_json(libros_ordenados, ruta_archivo):
     """
-    Genera un reporte en formato JSON.
+    Generates a report in JSON format.
     
     Args:
-        libros_ordenados (list): Lista de libros ya ordenada.
-        ruta_archivo (str): Ruta donde guardar el archivo JSON.
+        libros_ordenados (list): Already sorted list of books.
+        ruta_archivo (str): Path to save the JSON file.
     
     Returns:
-        list: Lista de diccionarios con los datos.
+        list: List of dictionaries with the data.
     """
     if not ruta_archivo:
         ruta_archivo = f"reporte_inventario_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"

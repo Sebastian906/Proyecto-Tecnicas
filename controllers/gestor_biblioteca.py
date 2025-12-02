@@ -1,13 +1,13 @@
 """
-Este módulo actúa como fachada (Facade Pattern) que coordina todos
-los subsistemas del Sistema de Gestión de Bibliotecas.
+This module acts as a facade pattern that coordinates
+all the subsystems of the Library Management System.
 
-Responsabilidades:
-- Gestionar inventarios (general y ordenado)
-- Coordinar préstamos y devoluciones
-- Gestionar reservas y colas de espera
-- Administrar usuarios
-- Coordinar estanterías
+Responsibilities:
+- Manage inventories (general and ordered)
+- Coordinate loans and returns
+- Manage reservations and waiting queues
+- Manage users
+- Coordinate shelving
 """
 
 from models import Libro, Usuario, Prestamo, Reserva, Estante
@@ -20,22 +20,22 @@ from datetime import datetime, timedelta
 
 class GestorBiblioteca:
     """
-    Clase principal que coordina todo el sistema de gestión de bibliotecas.
+    Main class that coordinates the entire library management system.
     
-    Implementa el patrón Facade para simplificar el acceso a los subsistemas.
+    Implements the Facade pattern to simplify access to subsystems.
     
     Attributes:
-        inventario_general (InventarioGeneral): Lista desordenada de libros.
-        inventario_ordenado (InventarioOrdenado): Lista ordenada por ISBN.
-        usuarios (dict): Diccionario de usuarios por ID.
-        colas_reservas (dict): Colas de reservas por ISBN.
-        estantes (dict): Diccionario de estantes por ID.
-        contador_prestamos (int): Contador para generar IDs de préstamos.
-        contador_reservas (int): Contador para generar IDs de reservas.
+        inventario_general (InventarioGeneral): Unordered list of books.
+        inventario_ordenado (InventarioOrdenado): Ordered list of books by ISBN.
+        usuarios (dict): Dictionary of users by ID.
+        colas_reservas (dict): Reservation queues by ISBN.
+        estantes (dict): Dictionary of shelves by ID.
+        contador_prestamos (int): Counter to generate loan IDs.
+        contador_reservas (int): Counter to generate reservation IDs.
     """
     def __init__(self):
-        """Inicializa el gestor de biblioteca."""
-        # Inventarios
+        """Initializes the library manager."""
+        # Inventories
         self.inventario_general = InventarioGeneral()
         self.inventario_ordenado = InventarioOrdenado()
         
@@ -56,13 +56,13 @@ class GestorBiblioteca:
 
     def agregar_libro(self, libro):
         """
-        Agrega un libro a ambos inventarios.
+        Adds a book to both inventories.
         
         Args:
-            libro (Libro): Objeto Libro a agregar.
+            libro (Libro): Book object to add.
         
         Returns:
-            bool: True si se agregó exitosamente.
+            bool: True if added successfully.
         """
         # Agregar a inventario general
         if not self.inventario_general.agregar_libro(libro):
@@ -77,13 +77,13 @@ class GestorBiblioteca:
     
     def buscar_libro_por_isbn(self, isbn):
         """
-        Busca un libro por ISBN en el inventario ordenado (búsqueda binaria).
+        Search for a book by ISBN in the sorted inventory (binary search).
         
         Args:
-            isbn (str): ISBN del libro.
+            isbn (str): Book ISBN.
         
         Returns:
-            Libro|None: Libro encontrado o None.
+            Libro|None: Found book or None.
         """
         libro, _ = busqueda_binaria_por_isbn(
             self.inventario_ordenado.obtener_libros(), 
@@ -93,57 +93,57 @@ class GestorBiblioteca:
     
     def buscar_libros_por_titulo(self, titulo):
         """
-        Busca libros por título (búsqueda lineal).
+        Search for books by title (linear search).
         
         Args:
-            titulo (str): Título o parte del título.
+            titulo (str): Title or part of the title.
         
         Returns:
-            list: Lista de libros encontrados.
+            list: List of found books.
         """
         return self.inventario_general.buscar_por_titulo(titulo)
     
     def buscar_libros_por_autor(self, autor):
         """
-        Busca libros por autor (búsqueda lineal).
+        Search for books by author (linear search).
         
         Args:
-            autor (str): Autor o parte del nombre.
+            autor (str): Author or part of the name.
         
         Returns:
-            list: Lista de libros encontrados.
+            list: List of found books.
         """
         return self.inventario_general.buscar_por_autor(autor)
     
     def eliminar_libro(self, isbn):
         """
-        Elimina un libro de ambos inventarios.
+        Removes a book from both inventories.
         
         Args:
-            isbn (str): ISBN del libro a eliminar.
+            isbn (str): ISBN of the book to remove.
         
         Returns:
-            bool: True si se eliminó exitosamente.
+            bool: True if removed successfully.
         """
         result1 = self.inventario_general.eliminar_libro(isbn)
         result2 = self.inventario_ordenado.eliminar_libro(isbn)
         return result1 and result2
     
     def obtener_todos_los_libros(self):
-        """Obtiene todos los libros del inventario."""
+        """Gets all books from the inventory."""
         return self.inventario_general.obtener_libros()
     
     # Gestión de Usuarios
 
     def agregar_usuario(self, usuario):
         """
-        Agrega un usuario al sistema.
+        Add a user to the system.
         
         Args:
-            usuario (Usuario): Objeto Usuario a agregar.
+            usuario (Usuario): User object to add.
         
         Returns:
-            bool: True si se agregó exitosamente.
+            bool: True if added successfully.
         """
         if usuario.id in self.usuarios:
             return False
@@ -155,25 +155,25 @@ class GestorBiblioteca:
     
     def buscar_usuario(self, usuario_id):
         """
-        Busca un usuario por ID.
+        Search for a user by ID.
         
         Args:
-            usuario_id (str): ID del usuario.
+            usuario_id (str): User ID.
         
         Returns:
-            Usuario|None: Usuario encontrado o None.
+            Usuario|None: Found user or None.
         """
         return self.usuarios.get(usuario_id)
     
     def eliminar_usuario(self, usuario_id):
         """
-        Elimina un usuario del sistema.
+        Removes a user from the system.
         
         Args:
-            usuario_id (str): ID del usuario a eliminar.
+            usuario_id (str): ID of the user to remove.
         
         Returns:
-            bool: True si se eliminó exitosamente.
+            bool: True if removed successfully.
         """
         if usuario_id in self.usuarios:
             del self.usuarios[usuario_id]
@@ -181,22 +181,22 @@ class GestorBiblioteca:
         return False
     
     def listar_usuarios(self):
-        """Obtiene la lista de todos los usuarios."""
+        """Gets the list of all users."""
         return list(self.usuarios.values())
     
     # Gestión de Préstamos
 
     def realizar_prestamo(self, usuario_id, isbn, dias_prestamo=15):
         """
-        Realiza un préstamo de libro a un usuario.
+        Loan a book to a user.
         
         Args:
-            usuario_id (str): ID del usuario.
-            isbn (str): ISBN del libro.
-            dias_prestamo (int, optional): Días de duración. Default: 15.
+            usuario_id (str): User ID.
+            isbn (str): Book ISBN.
+            dias_prestamo (int, optional): Duration in days. Default: 15.
         
         Returns:
-            tuple: (bool, mensaje) indicando éxito y mensaje descriptivo.
+            tuple: (bool, message) indicating success and descriptive message.
         """
         # Verificar usuario
         usuario = self.buscar_usuario(usuario_id)
@@ -237,16 +237,16 @@ class GestorBiblioteca:
     
     def devolver_libro(self, usuario_id, isbn):
         """
-        Procesa la devolución de un libro.
+        Process the return of a book.
         
-        FLUJO CRÍTICO: Verifica reservas pendientes usando búsqueda binaria.
+        CRITICAL FLOW: Checks pending reservations using binary search.
         
         Args:
-            usuario_id (str): ID del usuario.
-            isbn (str): ISBN del libro.
+            usuario_id (str): User ID.
+            isbn (str): Book ISBN.
         
         Returns:
-            tuple: (bool, mensaje) indicando éxito y mensaje descriptivo.
+            tuple: (bool, mensaje) indicating success and descriptive message.
         """
         # Verificar usuario
         usuario = self.buscar_usuario(usuario_id)
@@ -295,14 +295,14 @@ class GestorBiblioteca:
 
     def crear_reserva(self, usuario_id, isbn):
         """
-        Crea una reserva para un libro.
+        Creates a reservation for a book.
         
         Args:
-            usuario_id (str): ID del usuario.
-            isbn (str): ISBN del libro.
+            usuario_id (str): User ID.
+            isbn (str): Book ISBN.
         
         Returns:
-            tuple: (bool, mensaje) indicando éxito y mensaje descriptivo.
+            tuple: (bool, mensaje) indicating success and descriptive message.
         """
         # Verificar usuario
         usuario = self.buscar_usuario(usuario_id)
@@ -347,11 +347,11 @@ class GestorBiblioteca:
     
     def cancelar_reserva(self, usuario_id, isbn):
         """
-        Cancela una reserva de un usuario.
+        Cancels a reservation for a user.
         
         Args:
-            usuario_id (str): ID del usuario.
-            isbn (str): ISBN del libro.
+            usuario_id (str): User ID.
+            isbn (str): Book ISBN.
         
         Returns:
             tuple: (bool, mensaje)
@@ -371,7 +371,7 @@ class GestorBiblioteca:
         return True, "Reserva cancelada exitosamente"
     
     def obtener_reservas_libro(self, isbn):
-        """Obtiene la cola de reservas de un libro."""
+        """Get the reservation queue for a book."""
         if isbn in self.colas_reservas:
             return self.colas_reservas[isbn].obtener_todas()
         return []
@@ -380,13 +380,13 @@ class GestorBiblioteca:
 
     def agregar_estante(self, estante):
         """
-        Agrega un estante al sistema.
+        Adds a shelf to the system.
         
         Args:
-            estante (Estante): Objeto Estante.
+            estante (Estante): Shelf object.
         
         Returns:
-            bool: True si se agregó exitosamente.
+            bool: True if added successfully.
         """
         if estante.id in self.estantes:
             return False
@@ -395,11 +395,11 @@ class GestorBiblioteca:
     
     def asignar_libro_a_estante(self, isbn, estante_id):
         """
-        Asigna un libro a un estante.
+        Assigns a book to a shelf.
         
         Args:
-            isbn (str): ISBN del libro.
-            estante_id (str): ID del estante.
+            isbn (str): Book ISBN.
+            estante_id (str): Shelf ID.
         
         Returns:
             tuple: (bool, mensaje)
@@ -428,17 +428,17 @@ class GestorBiblioteca:
         return True, "Libro asignado al estante exitosamente"
     
     def listar_estantes(self):
-        """Obtiene la lista de todos los estantes."""
+        """Gets the list of all shelves."""
         return list(self.estantes.values())
     
     # Funciones de utilidades
 
     def obtener_estadisticas(self):
         """
-        Obtiene estadísticas generales del sistema.
+        Obtains general system statistics.
         
         Returns:
-            dict: Diccionario con estadísticas.
+            dict: Dictionary with statistics.
         """
         total_libros = self.inventario_general.cantidad_libros()
         total_usuarios = len(self.usuarios)

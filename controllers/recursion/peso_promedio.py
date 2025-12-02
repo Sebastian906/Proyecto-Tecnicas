@@ -1,25 +1,25 @@
 """
-Este algoritmo utiliza recursión de cola (tail recursion) para calcular
-el peso promedio de todos los libros de un autor. El trabajo se realiza
-antes de la llamada recursiva, usando acumuladores.
+This algorithm uses tail recursion to calculate the average 
+weight of all books by an author. The work is done before the 
+recursive call, using accumulators.
 """
 
 def calcular_peso_promedio(lista_libros, autor, indice=0, peso_acumulado=0.0, cantidad_libros=0):
     """
-    Calcula el peso promedio de libros de un autor usando recursión de cola.
+    Calculates the average weight of books by an author using tail recursion.
     
-    Esta función demuestra la recursión de cola donde el cálculo se realiza
-    antes de la llamada recursiva. Usa acumuladores para mantener el estado.
+    This function demonstrates tail recursion where the calculation is done
+    before the recursive call. It uses accumulators to maintain state.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Nombre del autor a buscar.
-        indice (int, optional): Índice actual en la lista. Default: 0.
-        peso_acumulado (float, optional): Peso acumulado hasta ahora. Default: 0.0.
-        cantidad_libros (int, optional): Cantidad de libros contados. Default: 0.
+        lista_libros (list): List of Book objects.
+        autor (str): Name of the author to search for.
+        indice (int, optional): Current index in the list. Default: 0.
+        peso_acumulado (float, optional): Accumulated weight so far. Default: 0.0.
+        cantidad_libros (int, optional): Count of books found. Default: 0.
     
     Returns:
-        float: Peso promedio de los libros del autor.
+        float: Average weight of the author's books.
     """
     # Caso base: llegamos al final de la lista
     if indice >= len(lista_libros):
@@ -45,21 +45,21 @@ def calcular_peso_promedio(lista_libros, autor, indice=0, peso_acumulado=0.0, ca
 
 def calcular_peso_promedio_con_demostracion(lista_libros, autor, indice=0, peso_acumulado=0.0, cantidad_libros=0, nivel=0):
     """
-    Versión que demuestra el proceso de recursión de cola en consola.
+    Version that demonstrates the tail recursion process in the console.
     
-    Muestra cómo se van actualizando los acumuladores ANTES de cada
-    llamada recursiva (característica clave de tail recursion).
+    Shows how accumulators are updated BEFORE each recursive call
+    (a key characteristic of tail recursion).
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Nombre del autor a buscar.
-        indice (int, optional): Índice actual. Default: 0.
-        peso_acumulado (float, optional): Peso acumulado. Default: 0.0.
-        cantidad_libros (int, optional): Cantidad contada. Default: 0.
-        nivel (int, optional): Nivel de profundidad. Default: 0.
+        lista_libros (list): List of Book objects.
+        autor (str): Name of the author to search for.
+        indice (int, optional): Current index. Default: 0.
+        peso_acumulado (float, optional): Accumulated weight. Default: 0.0.
+        cantidad_libros (int, optional): Count of books found. Default: 0.
+        nivel (int, optional): Depth level. Default: 0.
     
     Returns:
-        float: Peso promedio calculado.
+        float: Calculated average weight.
     """
     margen = "  " * nivel
     # Caso base
@@ -93,14 +93,14 @@ def calcular_peso_promedio_con_demostracion(lista_libros, autor, indice=0, peso_
 
 def calcular_estadisticas_peso(lista_libros, autor):
     """
-    Calcula estadísticas completas del peso usando recursión de cola.
+    Calculates comprehensive weight statistics using tail recursion.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Nombre del autor.
+        lista_libros (list): List of Book objects.
+        autor (str): Name of the author.
     
     Returns:
-        dict: Diccionario con estadísticas completas.
+        dict: Dictionary with comprehensive statistics.
     """
     # Funciones auxiliares con recursión de cola
     def calcular_peso_total(libros, indice=0, acumulado=0.0):
@@ -153,14 +153,14 @@ def calcular_estadisticas_peso(lista_libros, autor):
 
 def demostrar_recursion_cola(lista_libros, autor):
     """
-    Demuestra visualmente el proceso de recursión de cola.
+    Visually demonstrate the tail recursion process.
     
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        autor (str): Nombre del autor.
+        lista_libros (list): List of Book objects.
+        autor (str): Name of the author.
     
     Returns:
-        float: Peso promedio calculado.
+        float: Calculated average weight.
     """
     print("Recursión de Cola - Cálculo de Peso Promedio")
     print(f"\nAutor buscado: {autor}")

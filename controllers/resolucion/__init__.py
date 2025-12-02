@@ -1,11 +1,11 @@
 """
-Este paquete contiene algoritmos para resolver problemas de estanterías:
 
-- Fuerza Bruta: Encuentra TODAS las combinaciones peligrosas (> 8 Kg)
+This package contains algorithms for solving shelving problems:
 
-- Backtracking: Encuentra la combinación ÓPTIMA (maximizar valor ≤ 8 Kg)
+- Brute Force: Finds ALL dangerous combinations (> 8 Kg)
 
-Uso:
+- Backtracking: Finds the OPTIMAL combination (maximize value ≤ 8 Kg)
+Use:
     from controllers.resolucion import (
         encontrar_combinaciones_peligrosas,
         optimizar_estanteria_backtracking

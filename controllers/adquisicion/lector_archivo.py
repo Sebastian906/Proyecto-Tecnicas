@@ -5,25 +5,25 @@ from models.libro import Libro
 
 class LectorArchivo:
     """
-    Clase encargada de cargar los datos de los libros desde un .csv o un .json
+    Class responsible for loading book data from a .csv or .json file
     """
 
     @staticmethod
     def cargar_csv(ruta_archivo: str):
         """
-        Método para cargar libros desde un archivo CSV.
+        Method for loading books from a CSV file.
 
-        El archivo CSV debe tener los mismos atributos que la clase libro.py
+        The CSV file must have the same attributes as the book.py class.
 
         Args:
-            ruta_archivo (str): Ruta del archivo CSV a cargar.
+            ruta_archivo (str): Path to the CSV file to load.
 
         Returns:
-            list: Lista de objetos Libro cargados desde el archivo CSV.
+            list: List of Book objects loaded from the CSV file.
 
         Raises:
-            FileNotFoundError: Si el archivo no existe.
-            ValueError: Si el formato del archivo no coincide.
+            FileNotFoundError: If the file does not exist.
+            ValueError: If the file format does not match.
         """
         if not os.path.exists(ruta_archivo):
             raise FileNotFoundError(f"El archivo {ruta_archivo} no existe")
@@ -59,19 +59,19 @@ class LectorArchivo:
     @staticmethod
     def cargar_json(ruta_archivo: str):
         """
-        Método para cargar libros desde un archivo JSON.
+        Method for loading books from a JSON file.
 
-        El archivo JSON debe tener los mismos atributos que la clase libro.py
+        The JSON file must have the same attributes as the libro.py class.
 
         Args:
-            ruta_archivo (str): Ruta del archivo JSON a cargar.
+            ruta_archivo (str): Path to the JSON file to load.
 
         Returns:
-            list: Lista de objetos Libro cargados desde el archivo JSON.
+            list: List of Book objects loaded from the JSON file.
 
         Raises:
-            FileNotFoundError: Si el archivo no existe.
-            ValueError: Si el formato del archivo no coincide.
+            FileNotFoundError: If the file does not exist.
+            ValueError: If the file format does not match.
         """
         if not os.path.exists(ruta_archivo):
             raise FileNotFoundError(f"El archivo {ruta_archivo} no existe")
@@ -108,18 +108,18 @@ class LectorArchivo:
     @staticmethod
     def cargar_libros(ruta_archivo: str):
         """
-        Método para detectar automáticamente el formato del archivo.
+        Method for automatically detecting the file format.
 
-        Detecta el tipo del archivo por su extensión y llama al método correspondiente.
+        Detects the file type by its extension and calls the corresponding method.
 
         Args:
-            ruta_archivo (str): Ruta del archivo a cargar.
+            ruta_archivo (str): Path to the file to load.
 
         Returns:
-            list: Lista de objetos Libro cargados desde el archivo.
+            list: List of Book objects loaded from the file.
 
         Raises:
-            ValueError: Si el formato del archivo no es soportado.
+            ValueError: If the file format is not supported.
         """
         extension = os.path.splitext(ruta_archivo)[1].lower()
         if extension == '.csv':
@@ -135,11 +135,11 @@ class LectorArchivo:
     @staticmethod
     def guardar_csv(libros: list, ruta_archivo: str):
         """
-        Guarda una lista de libros en formato CSV.
+        Save a list of books in CSV format
 
         Args:
-            libros (list): Lista de objetos libro a guardar.
-            ruta_archivo (str): Ruta donde guardar el archivo CSV.
+            libros (list): List of Book objects to save.
+            ruta_archivo (str): Path where to save the CSV file.
         """
         with open(ruta_archivo, 'w', encoding='utf-8', newline='') as archivo:
             campos = [
@@ -166,11 +166,11 @@ class LectorArchivo:
     @staticmethod
     def guardar_json(libros: list, ruta_archivo: str):
         """
-        Guarda una lista de libros en formato JSON.
+        Save a list of books in JSON format.
 
         Args:
-            libros (list): Lista de objetos libro a guardar.
-            ruta_archivo (str): Ruta donde guardar el archivo JSON.
+            libros (list): List of Book objects to save.
+            ruta_archivo (str): Path where to save the JSON file.
         """
         datos = []
         for libro in libros:

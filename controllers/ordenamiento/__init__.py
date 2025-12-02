@@ -1,11 +1,10 @@
 """
-Este paquete contiene implementaciones de algoritmos de ordenamiento
-adaptados para trabajar con objetos Libro:
+This package contains implementations of sorting algorithms
+adapted to work with Book objects:
 
-- Insertion Sort: Para mantener el inventario ordenado por ISBN
-- Merge Sort: Para generar reportes globales ordenados por cualquier criterio
-
-Uso:
+- Insertion Sort: To maintain the inventory ordered by ISBN
+- Merge Sort: To generate global reports ordered by any criteria
+Use:
     from controllers.ordenamiento import ordenar_por_insercion, merge_sort
     
     # Insertion Sort

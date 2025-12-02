@@ -1,18 +1,18 @@
 """
-Este paquete contiene implementaciones de algoritmos recursivos
-para cálculos sobre colecciones de libros por autor:
+This package contains implementations of recursive algorithms
+for calculations on collections of books by author:
 
-- Recursión de Pila: Calcula el valor total de libros
-  * Trabajo al REGRESAR de las llamadas recursivas
-  * Acumula en la pila de llamadas del sistema
-  * Ejemplo clásico de recursión no optimizable
+- Stack Recursion: Calculates the total value of books
+  * Work on RETURN from recursive calls
+  * Accumulates in the system call stack
+  * Classic example of non-optimizable recursion
 
-- Recursión de Cola: Calcula el peso promedio de libros
-  * Trabajo ANTES de las llamadas recursivas
-  * Usa acumuladores explícitos
+- Tail Recursion: Calculates the average weight of books
+  * Work BEFORE recursive calls
+  * Uses explicit accumulators
   * Optimizable (Tail Call Optimization)
 
-Uso:
+Use:
     from controllers.recursion import (
         calcular_valor_total_recursivo,
         calcular_peso_promedio_recursivo

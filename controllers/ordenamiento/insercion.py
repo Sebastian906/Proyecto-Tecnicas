@@ -1,33 +1,33 @@
 """
-Este algoritmo se utiliza para mantener el Inventario Ordenado cada vez
-que se agrega un nuevo libro al sistema, asegurando que la lista siempre 
-esté ordenada por ISBN de forma ascendente para permitir búsqueda binaria.
+This algorithm is used to keep the inventory sorted every time
+a new book is added to the system, ensuring that the list is always 
+ordered by ISBN in ascending order to allow binary search.
 
-Complejidad Temporal:
-    - Mejor caso: O(n) -> la lista ya está ordenada
-    - Caso promedio: O(n²)
-    - Peor caso: O(n²)
+Time Complexity:
+    - Best case: O(n) -> the list is already sorted
+    - Average case: O(n²)
+    - Worst case: O(n²)
 
-Complejidad Espacial: O(1) - ordenamiento in-place
+Space Complexity: O(1) - in-place sorting
 """
 
 def ordenamiento_insercion(lista_libros, criterio='isbn', orden='asc'):
     """
-    Ordena una lista de libros utilizando el algoritmo de ordenamiento por inserción.
+    Sorts a list of books using the insertion sort algorithm.
 
-    Este algoritmo compara cada elemento con los anteriores y lo inserta
-    en la posición correcta. Es eficiente para listas pequeñas o casi ordenadas.
+    This algorithm compares each element with the previous ones and inserts it
+    in the correct position. It is efficient for small or nearly sorted lists.
     
     Args:
-        lista_libros (list): Lista de objetos Libro a ordenar.
-        criterio (str, optional): Atributo por el cual ordenar. 
-            Opciones: 'isbn', 'titulo', 'autor', 'peso', 'valor'.
+        lista_libros (list): List of Book objects to sort.
+        criterio (str, optional): Attribute to sort by. 
+            Options: 'isbn', 'titulo', 'autor', 'peso', 'valor'.
             Default: 'isbn'.
-        orden (str, optional): 'asc' para ascendente, 'desc' para descendente.
+        orden (str, optional): 'asc' for ascending, 'desc' for descending.
             Default: 'asc'.
     
     Returns:
-        list: La misma lista ordenada (modificada in-place).
+        list: The same sorted list (modified in-place).
     """
     n = len(lista_libros)
 
@@ -57,19 +57,19 @@ def ordenamiento_insercion(lista_libros, criterio='isbn', orden='asc'):
 
 def insertar_libro_ordenado(lista_ordenada, libro_nuevo, criterio='isbn'):
     """
-    Inserta un nuevo libro en una lista ya ordenada manteniendo el orden.
+    Inserts a new book into an already sorted list while maintaining order.
     
-    Esta es una optimización del Insertion Sort para agregar un solo elemento
-    a una lista que ya está ordenada. Usado en el Inventario Ordenado.
+    This is an optimization of Insertion Sort to add a single element
+    to a list that is already sorted. Used in the Ordered Inventory.
     
     Args:
-        lista_ordenada (list): Lista de libros ya ordenada.
-        libro_nuevo (Libro): Libro a insertar.
-        criterio (str, optional): Atributo por el cual está ordenada la lista.
+        lista_ordenada (list): Already sorted list of books.
+        libro_nuevo (Libro): Book to insert.
+        criterio (str, optional): Attribute by which the list is sorted.
             Default: 'isbn'.
     
     Returns:
-        int: Índice donde se insertó el libro.
+        int: Index where the book was inserted.
     """
     valor_nuevo = obtener_valor_criterio(libro_nuevo, criterio)
     # Agregar al final
@@ -84,17 +84,17 @@ def insertar_libro_ordenado(lista_ordenada, libro_nuevo, criterio='isbn'):
 
 def obtener_valor_criterio(libro, criterio):
     """
-    Obtiene el valor del atributo especificado de un libro.
+    Obtains the value of the specified attribute from a book.
     
     Args:
-        libro (Libro): Objeto Libro.
-        criterio (str): Nombre del atributo.
+        libro (Libro): Book object.
+        criterio (str): Name of the attribute.
     
     Returns:
-        any: Valor del atributo (str, float, int).
+        any: Value of the attribute (str, float, int).
     
     Raises:
-        AttributeError: Si el criterio no existe en el objeto Libro.
+        AttributeError: If the attribute does not exist in the Book object.
     """
     if not hasattr(libro, criterio):
         raise AttributeError(f"El libro no tiene el atributo '{criterio}'")
@@ -102,15 +102,15 @@ def obtener_valor_criterio(libro, criterio):
 
 def verificar_orden(lista_libros, criterio='isbn', orden='asc'):
     """
-    Verifica si una lista de libros está ordenada correctamente.
+    Verifies if a list of books is correctly ordered.
 
     Args:
-        lista_libros (list): Lista de objetos Libro.
-        criterio (str, optional): Atributo por el cual verificar. Default: 'isbn'.
-        orden (str, optional): 'asc' o 'desc'. Default: 'asc'.
+        lista_libros (list): List of Book objects.
+        criterio (str, optional): Attribute by which to verify. Default: 'isbn'.
+        orden (str, optional): 'asc' or 'desc'. Default: 'asc'.
     
     Returns:
-        bool: True si está ordenada correctamente.
+        bool: True if correctly ordered.
     """
     if len(lista_libros) <= 1:
         return True
@@ -129,13 +129,13 @@ def verificar_orden(lista_libros, criterio='isbn', orden='asc'):
 
 def contar_comparaciones_insercion(lista_libros, criterio='isbn'):
     """
-    Cuenta el número de comparaciones realizadas durante Insertion Sort.
+    Counts the number of comparisons made during Insertion Sort.
     
-    Útil para análisis de complejidad y demostración del algoritmo.
+    Useful for complexity analysis and algorithm demonstration.
     
     Args:
-        lista_libros (list): Lista de objetos Libro a ordenar.
-        criterio (str, optional): Atributo por el cual ordenar. Default: 'isbn'.
+        lista_libros (list): List of Book objects to sort.
+        criterio (str, optional): Attribute by which to sort. Default: 'isbn'.
     
     Returns:
         tuple: (lista_ordenada, num_comparaciones, num_movimientos)

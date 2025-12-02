@@ -1,28 +1,26 @@
 """
-Este algoritmo se utiliza para buscar libros por ISBN en el Inventario
-Ordenado. Es CRÍTICO para verificar reservas pendientes cuando se devuelve
-un libro.
+This algorithm is used to search for books by ISBN in the Sorted Inventory.
+It is CRITICAL for checking pending reservations when a book is returned.
 
-La lista DEBE estar ordenada por ISBN (ascendente) para que
-este algoritmo funcione correctamente.
+The list MUST be sorted by ISBN (ascending) for
+this algorithm to work correctly.
 """
 
 def busqueda_binaria_por_isbn(lista_libros, isbn):
     """
-    Buscar un libro por ISBN usando búsqueda binaria.
+    Search for a book by ISBN using binary search.
 
-    Esta función es usada obligatoriamente para verificar si un libro
-    devuelto tiene reservas pendientes en la cola de espera.
+    This function is mandatory for checking if a returned book
+    has pending reservations in the waiting queue.
 
     Args:
-        lista_libros (list): Lista de objetos Libro ordenada por ISBN.
-        isbn (str): ISBN del libro a buscar.
+        lista_libros (list): List of Book objects sorted by ISBN.
+        isbn (str): ISBN of the book to search for.
 
     Returns:
-        tuple: (libro, indice) si se encuentra, (None, -1) si no se encuentra.
-
+        tuple: (libro, índice) if found, (None, -1) if not found.
     Raises: 
-        ValueError: Si la lista no está ordenada por ISBN.
+        ValueError: If the list is not sorted by ISBN.
     """
     izquierda = 0
     derecha = len(lista_libros) - 1
@@ -43,18 +41,18 @@ def busqueda_binaria_por_isbn(lista_libros, isbn):
 
 def busqueda_binaria_recursiva(lista_libros, isbn, izquierda=0, derecha=None):
     """
-    Búsqueda binaria recursiva para encontrar un libro por ISBN.
+    Recursive binary search to find a book by ISBN.
 
-    Implementa el mismo algoritmo que `busqueda_binaria_por_isbn` pero de forma recursiva.
+    Implements the same algorithm as `busqueda_binaria_por_isbn` but recursively.
 
     Args:
-        lista_libros_ordenados (list): Lista ordenada por ISBN.
-        isbn (str): ISBN a buscar.
-        izquierda (int, optional): Índice izquierdo. Default: 0.
-        derecha (int, optional): Índice derecho. Default: len-1.
+        lista_libros_ordenados (list): List sorted by ISBN.
+        isbn (str): ISBN to search for.
+        izquierda (int, optional): Left index. Default: 0.
+        derecha (int, optional): Right index. Default: len-1.
     
     Returns:
-        tuple: (libro, indice) si se encuentra, (None, -1) si no se encuentra.
+        tuple: (libro, índice) if found, (None, -1) if not found.
     """
     if derecha is None:
         derecha = len(lista_libros) - 1
@@ -74,17 +72,17 @@ def busqueda_binaria_recursiva(lista_libros, isbn, izquierda=0, derecha=None):
     
 def busqueda_binaria_por_criterio(lista_ordenada, criterio, valor):
     """
-    Búsqueda binaria por un atributo específico.
+    Binary search by a specific attribute.
 
-    La lista debe estar ordenada por el criterio dado
+    The list must be sorted by the given criterion.
 
     Args:
-        lista_ordenada (list): Lista ordenada de objetos.
-        criterio (str): Atributo por el cual buscar.
-        valor: Valor a buscar.
+        lista_ordenada (list): Sorted list of objects.
+        criterio (str): Attribute to search by.
+        valor: Value to search for.
     
     Returns:
-        tuple: (objeto, indice) si se encuentra, (None, -1) si no se encuentra.
+        tuple: (object, index) if found, (None, -1) if not found.
     """
     izquierda = 0
     derecha = len(lista_ordenada) - 1
@@ -101,16 +99,16 @@ def busqueda_binaria_por_criterio(lista_ordenada, criterio, valor):
 
 def encontrar_primera_ocurrencia(lista_libros, isbn):
     """
-    Encuentra la primera ocurrencia de un ISBN en una lista ordenada.
+    Finds the first occurrence of an ISBN in a sorted list.
     
-    Útil si hay libros duplicados (mismo ISBN) en el inventario.
+    Useful if there are duplicate books (same ISBN) in the inventory.
     
     Args:
-        lista_libros_ordenados (list): Lista ordenada por ISBN.
-        isbn (str): ISBN a buscar.
+        lista_libros_ordenados (list): List sorted by ISBN.
+        isbn (str): ISBN to search for.
     
     Returns:
-        tuple: (libro, indice) de la primera ocurrencia, o (None, -1).
+        tuple: (libro, índice) of the first occurrence, or (None, -1).
     """
     izquierda = 0
     derecha = len(lista_libros) - 1
@@ -132,14 +130,14 @@ def encontrar_primera_ocurrencia(lista_libros, isbn):
 
 def encontrar_ultima_ocurrencia(lista_libros, isbn):
     """
-    Encuentra la última ocurrencia de un ISBN en una lista ordenada.
+    Finds the last occurrence of an ISBN in a sorted list.
     
     Args:
-        lista_libros_ordenados (list): Lista ordenada por ISBN.
-        isbn (str): ISBN a buscar.
+        lista_libros_ordenados (list): List sorted by ISBN.
+        isbn (str): ISBN to search for.
     
     Returns:
-        tuple: (libro, indice) de la última ocurrencia, o (None, -1).
+        tuple: (libro, índice) of the last occurrence, or (None, -1).
     """
     izquierda = 0
     derecha = len(lista_libros) - 1
@@ -161,16 +159,16 @@ def encontrar_ultima_ocurrencia(lista_libros, isbn):
 
 def contar_comparaciones_binarias(lista_libros, isbn):
     """
-    Cuenta el número de comparaciones realizadas durante búsqueda binaria.
+    Counts the number of comparisons made during binary search.
     
-    Útil para análisis de complejidad y demostración del algoritmo.
+    Useful for complexity analysis and algorithm demonstration.
     
     Args:
-        lista_libros_ordenados (list): Lista ordenada por ISBN.
-        isbn (str): ISBN a buscar.
+        lista_libros_ordenados (list): List sorted by ISBN.
+        isbn (str): ISBN to search for.
     
     Returns:
-        tuple: (libro, indice, comparaciones)
+        tuple: (libro, índice, comparaciones)
     """
     izquierda = 0
     derecha = len(lista_libros) - 1
@@ -189,17 +187,17 @@ def contar_comparaciones_binarias(lista_libros, isbn):
 
 def verificar_lista_ordenada(lista_libros, criterio='isbn'):
     """
-    Verifica si una lista está correctamente ordenada.
+    Checks if a list is correctly sorted.
     
-    Llamar a esta función antes de usar búsqueda binaria
-    para evitar resultados incorrectos.
+    Call this function before using binary search
+    to avoid incorrect results.
     
     Args:
-        lista_libros (list): Lista de libros a verificar.
-        criterio (str, optional): Atributo por el cual verificar. Default: 'isbn'.
+        lista_libros (list): List of books to check.
+        criterio (str, optional): Attribute to check by. Default: 'isbn'.
     
     Returns:
-        bool: True si está ordenada correctamente.
+        bool: True if correctly sorted.
     """
     if len(lista_libros) <= 1:
         return True
@@ -212,20 +210,20 @@ def verificar_lista_ordenada(lista_libros, criterio='isbn'):
 
 def busqueda_binaria_con_validacion(lista_libros, isbn):
     """
-    Búsqueda binaria con validación automática del orden.
+    Binary search with automatic order validation.
     
-    Verifica que la lista esté ordenada antes de buscar.
-    Más seguro pero con overhead adicional.
+    Checks if the list is sorted before searching.
+    Safer but with additional overhead.
     
     Args:
-        lista_libros (list): Lista de libros.
-        isbn (str): ISBN a buscar.
+        lista_libros (list): List of books.
+        isbn (str): ISBN to search for.
     
     Returns:
-        tuple: (libro, indice)
+        tuple: (libro, índice)
     
     Raises:
-        ValueError: Si la lista no está ordenada por ISBN.
+        ValueError: If the list is not sorted by ISBN.
     """
     if not verificar_lista_ordenada(lista_libros, 'isbn'):
         raise ValueError("La lista no está ordenada por ISBN.")

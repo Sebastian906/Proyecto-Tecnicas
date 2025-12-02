@@ -1,26 +1,26 @@
 class InventarioGeneral:
     """
-    Gestiona el inventario general de los libros (en orden del que fueron agregados) en la biblioteca.
+    Manage the overall inventory of books (in the order in which they were added) in the library.
 
-    Atributos:
-        libros (list): Lista que contiene los libros en el inventario.
+    Attributes:
+        libros (list): List containing the books in the inventory.
     """
 
     def __init__(self):
         """
-        Inicia el inventario general con una lista vacía de libros.
+        Initializes the general inventory with an empty list of books.
         """
         self.libros = []
 
     def agregar_libro(self, libro):
         """
-        Agrega un libro al inventario general.
+        Adds a book to the general inventory.
 
         Args:
-            libro (Libro): Objeto Libro a agregar al inventario.
+            libro (Libro): Book object to add to the inventory.
 
         Returns:
-            bool: True si el libro fue agregado exitosamente. False si el ISBN ya existe en el inventario.
+            bool: True if the book was added successfully. False if the ISBN already exists in the inventory.
         """
         # Verificar que el ISBN no exista en el inventario
         if self.buscar_por_isbn(libro.isbn):
@@ -31,13 +31,13 @@ class InventarioGeneral:
     
     def agregar_libros(self, lista_libros):
         """
-        Agrega múltiples libros al inventario general.
+        Add multiple books to the overall inventory.
 
         Args:
-            lista_libros (list): Lista de objetos Libro a agregar al inventario.
+            lista_libros (list): List of Book objects to add to the inventory.
 
         Returns:
-            int: Número de libros agregados exitosamente.
+            int: Number of books successfully added.
         """
         agregados = 0
         for libro in lista_libros:
@@ -47,13 +47,13 @@ class InventarioGeneral:
     
     def eliminar_libro(self, isbn):
         """
-        Elimina un libro del inventario general por su ISBN.
+        Removes a book from the general inventory by its ISBN.
 
         Args:
-            isbn (str): ISBN del libro a eliminar.
+            isbn (str): ISBN of the book to remove.
 
         Returns:
-            bool: True si se eliminó, False si no se encontró el libro.
+            bool: True if the book was removed, False if the book was not found.
         """
         for i, libro in enumerate(self.libros):
             if libro.isbn == isbn:
@@ -63,13 +63,13 @@ class InventarioGeneral:
     
     def buscar_por_isbn(self, isbn):
         """
-        Busca un libro en el inventario por su ISBN.
+        Searches for a book in the inventory by its ISBN.
 
         Args:
-            isbn (str): ISBN del libro a buscar.
+            isbn (str): ISBN of the book to search for.
 
         Returns:
-            Libro o None: El libro si se encuentra, None si no se encuentra.
+            Libro o None: The book is found, None is not found.
         """
         for libro in self.libros:
             if libro.isbn == isbn:
@@ -78,13 +78,13 @@ class InventarioGeneral:
     
     def buscar_por_titulo(self, titulo):
         """
-        Busca libros en el inventario por su título.
+        Search for books in the inventory by their title.
 
         Args:
-            titulo (str): Título del libro a buscar.
+            titulo (str): Title of the book to search for.
 
         Returns:
-            list: Lista de libros que coinciden con el título.
+            list: List of books that match the title.
         """
         titulo_lower = titulo.lower()
         resultados = []
@@ -96,13 +96,13 @@ class InventarioGeneral:
     
     def buscar_por_autor(self, autor):
         """
-        Busca libros en el inventario por su autor.
+        Search for books in the inventory by their author.
 
         Args:
-            autor (str): Autor del libro a buscar.
+            autor (str): Author of the book to search for.
 
         Returns:
-            list: Lista de libros que coinciden con el autor.
+            list: List of books that match the author.
         """
         autor_lower = autor.lower()
         resultados = []
@@ -114,46 +114,46 @@ class InventarioGeneral:
     
     def obtener_libros(self):
         """
-        Obtiene la lista completa de libros en el inventario.
+        Obtains the complete list of books in the inventory.
 
         Returns:
-            list: Copia de todos los libros en el inventario.
+            list: Copy of all books in the inventory.
         """
         return self.libros.copy()
     
     def cantidad_libros(self):
         """
-        Obtiene la cantidad total de libros en el inventario.
+        Obtains the total number of books in the inventory.
 
         Returns:
-            int: Número total de libros en el inventario.
+            int: Total number of books in the inventory.
         """
         return len(self.libros)
     
     def esta_vacio(self):
         """
-        Verifica si el inventario está vacío.
+        Checks if the inventory is empty.
 
         Returns:
-            bool: True si el inventario está vacío, False en caso contrario.
+            bool: True if the inventory is empty, False otherwise.
         """
         return len(self.libros) == 0
     
     def limpiar_inventario(self):
         """
-        Limpia todos los libros del inventario.
+        Clears all books from the inventory.
         """
         self.libros.clear()
 
     def obtener_por_indice(self, indice):
         """
-        Obtiene un libro por su índice en la lista del inventario.
+        Obtains a book by its index in the inventory list.
 
         Args:
-            indice (int): Índice del libro a obtener.
+            indice (int): Index of the book to obtain.
 
         Returns:
-            Libro|None: El libro si el índice es válido, None si es inválido.
+            Libro|None: The book if the index is valid, None if invalid.
         """
         if 0 <= indice < len(self.libros):
             return self.libros[indice]
@@ -161,10 +161,10 @@ class InventarioGeneral:
     
     def __len__(self):
         """
-        Devuelve la cantidad de libros en el inventario al usar len().
+        Returns the number of books in the inventory when using len().
 
         Returns:
-            int: Número total de libros en el inventario.
+            int: Total number of books in the inventory.
         """
         return len(self.libros)
     

@@ -13,29 +13,29 @@ class ColaReservas:
     
     def __init__(self, libro_isbn=None):
         """
-        Inicializa una cola vacía.
+        Initialize an empty queue.
         
         Args:
-            libro_isbn (str, optional): ISBN del libro para esta cola de reservas.
+            libro_isbn (str, optional): ISBN of the book for this reservation queue.
         """
         self._items = []
         self._libro_isbn = libro_isbn
     
     def encolar(self, reserva):
         """
-        Agrega una reserva al final de la cola.
+        Adds a reservation to the end of the queue.
         
         Args:
-            reserva (Reserva): Objeto Reserva a agregar.
+            reserva (Reserva): Reservation object to add.
         """
         self._items.append(reserva)
     
     def desencolar(self):
         """
-        Remueve y retorna la primera reserva de la cola.
+        Removes and returns the first reservation in the queue.
         
         Returns:
-            Reserva|None: La primera reserva o None si la cola está vacía.
+            Reserva|None: The first reservation or None if the queue is empty.
         """
         if not self.esta_vacia():
             return self._items.pop(0)
@@ -43,10 +43,10 @@ class ColaReservas:
     
     def ver_frente(self):
         """
-        Retorna la primera reserva sin removerla.
+        Returns the first reservation without removing it.
         
         Returns:
-            Reserva|None: La primera reserva o None si la cola está vacía.
+            Reserva|None: The first reservation or None if the queue is empty.
         """
         if not self.esta_vacia():
             return self._items[0]
@@ -54,53 +54,53 @@ class ColaReservas:
     
     def esta_vacia(self):
         """
-        Verifica si la cola está vacía.
+        Checks if the queue is empty.
         
         Returns:
-            bool: True si la cola no tiene elementos.
+            bool: True if the queue has no elements.
         """
         return len(self._items) == 0
     
     def tamanio(self):
         """
-        Retorna la cantidad de reservas en la cola.
+        Returns the number of reservations in the queue.
         
         Returns:
-            int: Número de elementos en la cola.
+            int: NNumber of elements in the queue.
         """
         return len(self._items)
     
     def limpiar(self):
-        """Elimina todas las reservas de la cola."""
+        """Removes all reservations from the queue."""
         self._items.clear()
     
     def obtener_todas(self):
         """
-        Obtiene todas las reservas de la cola.
+        Gets all reservations from the queue.
         
         Returns:
-            list: Lista de todas las reservas (orden: primera a última).
+            list: List of all reservations (order: first to last).
         """
         return self._items.copy()
     
     def obtener_pendientes(self):
         """
-        Obtiene solo las reservas pendientes.
+        Gets only the pending reservations.
         
         Returns:
-            list: Lista de reservas con estado "pendiente".
+            list: List of reservations with status "pendiente".
         """
         return [r for r in self._items if r.estado == "pendiente"]
     
     def buscar_reserva_por_usuario(self, usuario_id):
         """
-        Busca si un usuario tiene una reserva en esta cola.
+        Check if a user has a reservation in this queue.
         
         Args:
-            usuario_id (str): ID del usuario a buscar.
+            usuario_id (str): ID of the user to search for.
         
         Returns:
-            Reserva|None: La reserva del usuario o None si no la tiene.
+            Reserva|None: The user's reservation or None if they don't have one.
         """
         for reserva in self._items:
             if reserva.usuario_id == usuario_id and reserva.estado == "pendiente":
@@ -109,13 +109,13 @@ class ColaReservas:
     
     def eliminar_reserva(self, reserva_id):
         """
-        Elimina una reserva específica de la cola (cancelación).
+        Removes a specific reservation from the queue (cancelacion).
         
         Args:
-            reserva_id (str): ID de la reserva a eliminar.
+            reserva_id (str): ID of the reservation to remove.
         
         Returns:
-            bool: True si se eliminó, False si no se encontró.
+            bool: True if removed, False if not found.
         """
         for i, reserva in enumerate(self._items):
             if reserva.id == reserva_id:
@@ -125,13 +125,13 @@ class ColaReservas:
     
     def obtener_posicion(self, usuario_id):
         """
-        Obtiene la posición de un usuario en la cola de espera.
+        Gets a user's position in the waiting queue.
         
         Args:
-            usuario_id (str): ID del usuario.
+            usuario_id (str): ID of the user.
         
         Returns:
-            int: Posición en la cola (1 = primero) o -1 si no está.
+            int: Position in the queue (1 = first) or -1 if not found.
         """
         for i, reserva in enumerate(self._items):
             if reserva.usuario_id == usuario_id and reserva.estado == "pendiente":
