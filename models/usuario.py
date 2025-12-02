@@ -1,13 +1,13 @@
 class Usuario:
     """
-    Modelo correspondiente a los usuarios del sistema
+    Model corresponding to system users
 
-    Atributos:
-        id (str): Identificador del usuario.
-        nombre (str): Nombre del usuario.
-        apellidos(str): Apellidos del usuario.
-        direccion (str): Dirección donde vive el usuario.
-        historial_prestamos (pila): Lista de préstamos realizados por el usuario.
+    Attributes:
+        id (str): User identifier.
+        nombre (str): User's first name.
+        apellidos(str): User's last name.
+        direccion (str): Address where the user lives.
+        historial_prestamos (stack): List of loans made by the user.
     """
 
     def __init__(self, id: str, nombre: str, apellidos: str, direccion: str):

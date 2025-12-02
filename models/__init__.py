@@ -1,5 +1,5 @@
 """
-Este paquete contiene todos los modelos de datos del sistema.
+This package contains all the system data models.
 """
 
 from .libro import Libro

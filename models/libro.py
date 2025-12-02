@@ -1,17 +1,17 @@
 class Libro:
     """
-    Modelo correspondiente a los libros dentro del sistema
+    Model corresponding to the books within the system
 
-    Atributos:
-        isbn (str): El ISBN único identificador del libro.
-        titulo (str): El título del libro.
-        autor (str): El autor del libro.
-        peso (float): El peso del libro en kilogramos (kg).
-        valor (float): El valor monetario del libro en pesos Colombianos (COP).
-        genero (str): El género literario del libro.
-        cantidad_disponible (int): La cantidad de libros disponibles en inventario.
-        cantidad_total (int): La cantidad total de libros en inventario.
-        estante_id (int): El identificador del estante donde se encuentra el libro.
+    Attributes:
+        isbn (str): The unique ISBN identifier of the book.
+        titulo (str): The title of the book.
+        autor (str): The author of the book.
+        peso (float): The weight of the book in kilograms (kg).
+        valor (float): The monetary value of the book in Colombian pesos (COP).
+        genero (str): The literary genre of the book.
+        cantidad_disponible (int): The number of available copies in inventory.
+        cantidad_total (int): The total number of copies in inventory.
+        estante_id (int): The identifier of the shelf where the book is located.
     """
 
     def __init__(self, isbn, titulo, autor, peso, valor, genero, cantidad_disponible=1, cantidad_total=1, estante_id=None):
@@ -27,10 +27,10 @@ class Libro:
 
     def esta_disponible(self):
         """
-        Verifica si el libro está disponible para préstamo.
+        Checks if the book is available for loan.
         
         Returns:
-            bool: True si hay al menos una copia disponible, False en caso contrario.
+            bool: True if there is at least one copy available, False otherwise.
         """
         return self.cantidad_disponible > 0
 

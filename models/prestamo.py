@@ -1,15 +1,15 @@
 class Prestamo:
     """
-    Modelo correspondiente a los préstamos realizados por los usuarios
+    Model corresponding to loans made by users
 
-    Atributos:
-        id (str): Identificador único del préstamo.
-        usuario_id (str): Identificador del usuario que realizó el préstamo.
-        libro_isbn (str): ISBN del libro prestado.
-        fecha_prestamo (str): Fecha en que se realizó el préstamo.
-        fecha_devolucion_esperada (str): Fecha en que se debe devolver el libro.
-        fecha_devolucion_real (str): Fecha en que se devolvió el libro.
-        estado (str): Estado del préstamo.
+    Attributes:
+        id (str): Unique identifier of the loan.
+        usuario_id (str): Identifier of the user who made the loan.
+        libro_isbn (str): ISBN of the loaned book.
+        fecha_prestamo (str): Date when the loan was made.
+        fecha_devolucion_esperada (str): Date when the book should be returned.
+        fecha_devolucion_real (str): Date when the book was actually returned.
+        estado (str): Status of the loan.
     """
 
     def __init__(self, id: str, usuario_id: str, libro_isbn: str, fecha_prestamo: str, fecha_devolucion_esperada: str,

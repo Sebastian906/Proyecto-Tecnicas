@@ -1,13 +1,13 @@
 class Estante:
     """
-    Modelo correspondiente a los estantes dentro del sistema
+    Model corresponding to the shelves within the system
 
-    Atributos:
-        id (str): Identificador del estante.
-        cantidad (int): Cantidad de libros que puede contener el estante.
-        peso_maximo (float): Peso máximo que puede soportar el estante en kilogramos (kg).
-        peso_actual (float): Peso actual del estante en kilogramos (kg).
-        libros_asignados (list): Lista de libros asignados al estante.
+    Attributes:
+        id (str): Shelf identifier.
+        cantidad (int): Number of books the shelf can hold.
+        peso_maximo (float): Maximum weight the shelf can support in kilograms (kg).
+        peso_actual (float): Current weight of the shelf in kilograms (kg).
+        libros_asignados (list): List of books assigned to the shelf.
     """
 
     PESO_MAXIMO = 8.0 # en kilogramos
