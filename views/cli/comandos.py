@@ -1,6 +1,6 @@
 """
-Este módulo proporciona una interfaz por consola basada en menús
-para interactuar con todas las funcionalidades del sistema.
+This module provides a menu-based console interface
+for interacting with all system functionalities.
 """
 
 from controllers.gestor_biblioteca import GestorBiblioteca
@@ -17,15 +17,15 @@ import os
 gestor = GestorBiblioteca()
 
 def limpiar():
-    """Limpia la pantalla."""
+    """Clears the screen."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def pausar():
-    """Pausa hasta presionar Enter."""
-    input("\nPresione Enter para continuar...")
+    """Pauses until Enter is pressed."""
+    input("\nPress Enter to continue...")
 
 def menu_principal():
-    """Muestra el menú principal."""
+    """Displays the main menu."""
     while True:
         limpiar()
         print("    SISTEMA DE GESTIÓN DE BIBLIOTECAS")
@@ -54,7 +54,7 @@ def menu_principal():
 # Libros
 
 def menu_libros():
-    """Menú de gestión de libros."""
+    """Books management menu."""
     while True:
         limpiar()
         print("\n GESTIÓN DE LIBROS ")
@@ -79,7 +79,7 @@ def menu_libros():
         elif op == "0": break
 
 def cargar_libros():
-    """Carga libros desde archivo."""
+    """Load books from file."""
     print("\n CARGAR LIBROS ")
     ruta = input("Ruta del archivo: ").strip() or "data/libros.csv"
     
@@ -92,7 +92,7 @@ def cargar_libros():
     pausar()
 
 def agregar_libro():
-    """Agrega un libro manualmente."""
+    """Add a book manually."""
     print("\n AGREGAR LIBRO ")
     try:
         libro = Libro(
@@ -111,7 +111,7 @@ def agregar_libro():
     pausar()
 
 def buscar_isbn():
-    """Busca libro por ISBN."""
+    """Search for a book by ISBN."""
     print("\n BUSCAR POR ISBN ")
     libro = gestor.buscar_libro_por_isbn(input("ISBN: "))
     
@@ -124,7 +124,7 @@ def buscar_isbn():
     pausar()
 
 def buscar_titulo():
-    """Busca libros por título."""
+    """Search for books by title."""
     print("\n BUSCAR POR TÍTULO ")
     libros = gestor.buscar_libros_por_titulo(input("Título: "))
     
@@ -136,7 +136,7 @@ def buscar_titulo():
     pausar()
 
 def buscar_autor():
-    """Busca libros por autor."""
+    """Search for books by author."""
     print("\n BUSCAR POR AUTOR ")
     libros = gestor.buscar_libros_por_autor(input("Autor: "))
     
@@ -148,7 +148,7 @@ def buscar_autor():
     pausar()
 
 def listar_libros():
-    """Lista todos los libros."""
+    """List all books."""
     print("\n TODOS LOS LIBROS ")
     libros = gestor.obtener_todos_los_libros()
     
@@ -163,7 +163,7 @@ def listar_libros():
     pausar()
 
 def eliminar_libro():
-    """Elimina un libro."""
+    """Delete a book."""
     print("\n ELIMINAR LIBRO ")
     print("Eliminado" if gestor.eliminar_libro(input("ISBN: ")) else "No encontrado")
     pausar()
@@ -171,7 +171,7 @@ def eliminar_libro():
 # Usuarios
 
 def menu_usuarios():
-    """Menú de gestión de usuarios."""
+    """Users management menu."""
     while True:
         limpiar()
         print("\n GESTIÓN DE USUARIOS ")
@@ -192,7 +192,7 @@ def menu_usuarios():
         elif op == "0": break
 
 def agregar_usuario():
-    """Agrega un usuario."""
+    """Add an user."""
     print("\n AGREGAR USUARIO ")
     try:
         usuario = Usuario(
@@ -207,7 +207,7 @@ def agregar_usuario():
     pausar()
 
 def buscar_usuario():
-    """Busca un usuario."""
+    """Search for a user."""
     print("\n BUSCAR USUARIO ")
     usuario = gestor.buscar_usuario(input("ID: "))
     
@@ -219,7 +219,7 @@ def buscar_usuario():
     pausar()
 
 def listar_usuarios():
-    """Lista todos los usuarios."""
+    """List all users."""
     print("\n TODOS LOS USUARIOS ")
     usuarios = gestor.listar_usuarios()
     
@@ -232,7 +232,7 @@ def listar_usuarios():
     pausar()
 
 def ver_historial():
-    """Muestra historial de préstamos."""
+    """Show loan history."""
     print("\n HISTORIAL ")
     usuario = gestor.buscar_usuario(input("ID del usuario: "))
     
@@ -249,7 +249,7 @@ def ver_historial():
     pausar()
 
 def eliminar_usuario():
-    """Elimina un usuario."""
+    """Delete a user."""
     print("\n ELIMINAR USUARIO ")
     print("Eliminado" if gestor.eliminar_usuario(input("ID: ")) else "No encontrado")
     pausar()
@@ -257,7 +257,7 @@ def eliminar_usuario():
 # Préstamos
 
 def menu_prestamos():
-    """Menú de préstamos."""
+    """Loans management menu."""
     while True:
         limpiar()
         print("\n PRÉSTAMOS Y DEVOLUCIONES ")
@@ -274,7 +274,7 @@ def menu_prestamos():
         elif op == "0": break
 
 def realizar_prestamo():
-    """Realiza un préstamo."""
+    """Make a loan."""
     print("\n REALIZAR PRÉSTAMO ")
     exito, msg = gestor.realizar_prestamo(
         input("ID usuario: "),
@@ -285,14 +285,14 @@ def realizar_prestamo():
     pausar()
 
 def devolver_libro():
-    """Devuelve un libro."""
+    """Return a book."""
     print("\n DEVOLVER LIBRO ")
     exito, msg = gestor.devolver_libro(input("ID usuario: "), input("ISBN libro: "))
     print(f"\n{'Si' if exito else 'No'} {msg}")
     pausar()
 
 def ver_activos():
-    """Muestra préstamos activos."""
+    """Shows active loans."""
     print("\n PRÉSTAMOS ACTIVOS ")
     total = 0
     for u in gestor.listar_usuarios():
@@ -309,7 +309,7 @@ def ver_activos():
 # Reservas
 
 def menu_reservas():
-    """Menú de reservas."""
+    """Reservations management menu."""
     while True:
         limpiar()
         print("\n GESTIÓN DE RESERVAS ")
@@ -326,21 +326,21 @@ def menu_reservas():
         elif op == "0": break
 
 def crear_reserva():
-    """Crea una reserva."""
+    """Create a reservation."""
     print("\n CREAR RESERVA ")
     exito, msg = gestor.crear_reserva(input("ID usuario: "), input("ISBN libro: "))
     print(f"\n{'Si' if exito else 'No'} {msg}")
     pausar()
 
 def cancelar_reserva():
-    """Cancela una reserva."""
+    """Cancel a reservation."""
     print("\n CANCELAR RESERVA ")
     exito, msg = gestor.cancelar_reserva(input("ID usuario: "), input("ISBN libro: "))
     print(f"\n{'Si' if exito else 'No'} {msg}")
     pausar()
 
 def ver_reservas():
-    """Muestra todas las reservas."""
+    """Show all reservations."""
     print("\n TODAS LAS RESERVAS ")
     total = 0
     for isbn, cola in gestor.colas_reservas.items():
@@ -354,7 +354,7 @@ def ver_reservas():
 # Estantes
 
 def menu_estantes():
-    """Menú de estantes."""
+    """Shelves management menu."""
     while True:
         limpiar()
         print("\n GESTIÓN DE ESTANTES ")
@@ -375,7 +375,7 @@ def menu_estantes():
         elif op == "0": break
 
 def agregar_estante():
-    """Agrega un estante."""
+    """Add a shelf."""
     print("\nAGREGAR ESTANTE")
     try:
         estante = Estante(input("ID: "), int(input("Espacios: ")))
@@ -385,7 +385,7 @@ def agregar_estante():
     pausar()
 
 def asignar_libro():
-    """Asigna libro a estante."""
+    """Assign book to shelf."""
     print("\n ASIGNAR LIBRO")
     exito, msg = gestor.asignar_libro_a_estante(
         input("ISBN: "), 
@@ -395,7 +395,7 @@ def asignar_libro():
     pausar()
 
 def listar_estantes():
-    """Lista todos los estantes."""
+    """List all shelves."""
     print("\n ESTANTES ")
     for e in gestor.listar_estantes():
         print(f"\nEstante {e.id}: {len(e.libros_asignados)}/{e.cantidad} libros")
@@ -403,7 +403,7 @@ def listar_estantes():
     pausar()
 
 def analisis_peligroso():
-    """Analiza combinaciones peligrosas."""
+    """Analyze dangerous combinations."""
     libros = gestor.obtener_todos_los_libros()
     if len(libros) < 4:
         print("\nSe necesitan al menos 4 libros")
@@ -412,7 +412,7 @@ def analisis_peligroso():
     pausar()
 
 def optimizacion():
-    """Optimiza estantería."""
+    """Optimize shelving."""
     libros = gestor.obtener_todos_los_libros()
     if libros:
         demostrar_backtracking(libros)
@@ -423,7 +423,7 @@ def optimizacion():
 # Reportes
 
 def menu_reportes():
-    """Menú de reportes."""
+    """Reports and statistics menu."""
     while True:
         limpiar()
         print("\n REPORTES Y ESTADÍSTICAS ")
@@ -442,7 +442,7 @@ def menu_reportes():
         elif op == "0": break
 
 def estadisticas():
-    """Muestra estadísticas."""
+    """Show statistics."""
     stats = gestor.obtener_estadisticas()
     print(f"\nLibros: {stats['total_libros']}")
     print(f"Usuarios: {stats['total_usuarios']}")
@@ -452,7 +452,7 @@ def estadisticas():
     pausar()
 
 def reporte_inventario():
-    """Genera reporte."""
+    """Generate report."""
     libros = gestor.obtener_todos_los_libros()
     if libros:
         generar_reporte_global(libros, criterio='valor', orden='desc', 
@@ -463,7 +463,7 @@ def reporte_inventario():
     pausar()
 
 def valor_autor():
-    """Calcula valor total por autor."""
+    """Calculate total value by author."""
     libros = gestor.obtener_todos_los_libros()
     if libros:
         demostrar_recursion_pila(libros, input("\nAutor: "))
@@ -472,7 +472,7 @@ def valor_autor():
     pausar()
 
 def peso_autor():
-    """Calcula peso promedio por autor."""
+    """Calculate average weight per author."""
     libros = gestor.obtener_todos_los_libros()
     if libros:
         demostrar_recursion_cola(libros, input("\nAutor: "))
@@ -483,7 +483,7 @@ def peso_autor():
 # Algoritmos
 
 def menu_algoritmos():
-    """Menú de demostraciones."""
+    """Demonstrations menu."""
     print("\n[Todas las demostraciones están en los menús específicos]")
     print("  • Estantes > Análisis peligroso (Fuerza Bruta)")
     print("  • Estantes > Optimización (Backtracking)")
@@ -491,7 +491,7 @@ def menu_algoritmos():
     pausar()
 
 def iniciar_cli():
-    """Inicia la CLI."""
+    """Start the CLI."""
     limpiar()
     print("\n¡Bienvenido al Sistema de Gestión de Bibliotecas!")
     print("\nSugerencia: Cargue libros desde el menú [1]")

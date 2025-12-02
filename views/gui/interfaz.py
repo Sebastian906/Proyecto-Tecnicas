@@ -1,5 +1,5 @@
 """
-Interfaz construida con tkinter para todas las funcionalidades del sistema.
+Interface built with tkinter for all system functionalities.
 """
 
 import tkinter as tk
@@ -10,7 +10,7 @@ from models import Libro, Usuario, Estante
 
 
 class BibliotecaGUI:
-    """Clase principal de la interfaz gráfica."""
+    """Main class for the graphical interface."""
     
     def __init__(self, root):
         self.root = root
@@ -24,7 +24,7 @@ class BibliotecaGUI:
         self.crear_interfaz()
     
     def crear_interfaz(self):
-        """Crea la estructura principal de la interfaz."""
+        """Create the main structure of the interface."""
         # Notebook (pestañas)
         self.notebook = ttk.Notebook(self.root)
         self.notebook.pack(fill='both', expand=True, padx=10, pady=10)
@@ -40,7 +40,7 @@ class BibliotecaGUI:
     #  Interfaz Libros
     
     def crear_interfaz_libros(self):
-        """Crea la pestaña de gestión de libros."""
+        """Create the book management tab."""
         tab = ttk.Frame(self.notebook)
         self.notebook.add(tab, text="Libros")
         
@@ -91,7 +91,7 @@ class BibliotecaGUI:
         scroll.pack(side='right', fill='y')
     
     def cargar_libros(self):
-        """Carga libros desde archivo."""
+        """Load books from file."""
         ruta = filedialog.askopenfilename(
             title="Seleccionar archivo",
             filetypes=[("Archivos CSV", "*.csv"), ("Archivos JSON", "*.json")]
@@ -107,7 +107,7 @@ class BibliotecaGUI:
                 messagebox.showerror("Error", str(e))
     
     def agregar_libro(self):
-        """Ventana para agregar un libro."""
+        """Window to add a book."""
         ventana = tk.Toplevel(self.root)
         ventana.title("Agregar Libro")
         ventana.geometry("400x350")
@@ -154,7 +154,7 @@ class BibliotecaGUI:
         ttk.Button(ventana, text="Guardar", command=guardar).grid(row=len(campos), column=0, columnspan=2, pady=10)
     
     def buscar_libro_isbn(self):
-        """Busca un libro por ISBN."""
+        """Search for a book by ISBN."""
         isbn = tk.simpledialog.askstring("Buscar", "Ingrese el ISBN:")
         if isbn:
             libro = self.gestor.buscar_libro_por_isbn(isbn)
@@ -167,26 +167,26 @@ class BibliotecaGUI:
                 messagebox.showwarning("No encontrado", "Libro no encontrado")
     
     def buscar_por_titulo(self):
-        """Busca libros por título."""
+        """Search for books by title."""
         titulo = self.entry_buscar_titulo.get()
         if titulo:
             libros = self.gestor.buscar_libros_por_titulo(titulo)
             self.mostrar_libros_en_tree(libros)
     
     def buscar_por_autor(self):
-        """Busca libros por autor."""
+        """Search for books by author."""
         autor = self.entry_buscar_autor.get()
         if autor:
             libros = self.gestor.buscar_libros_por_autor(autor)
             self.mostrar_libros_en_tree(libros)
     
     def actualizar_lista_libros(self):
-        """Actualiza la lista de libros."""
+        """Update the list of books."""
         libros = self.gestor.obtener_todos_los_libros()
         self.mostrar_libros_en_tree(libros)
     
     def mostrar_libros_en_tree(self, libros):
-        """Muestra libros en el treeview."""
+        """Show books in the treeview."""
         # Limpiar
         for item in self.tree_libros.get_children():
             self.tree_libros.delete(item)
@@ -205,7 +205,7 @@ class BibliotecaGUI:
     #  Interfaz Usuarios
     
     def crear_interfaz_usuarios(self):
-        """Crea la pestaña de usuarios."""
+        """Create the user tab."""
         tab = ttk.Frame(self.notebook)
         self.notebook.add(tab, text="Usuarios")
         
@@ -237,7 +237,7 @@ class BibliotecaGUI:
         scroll.pack(side='right', fill='y')
     
     def agregar_usuario(self):
-        """Ventana para agregar usuario."""
+        """Add user window."""
         ventana = tk.Toplevel(self.root)
         ventana.title("Agregar Usuario")
         ventana.geometry("400x200")
@@ -279,7 +279,7 @@ class BibliotecaGUI:
         ttk.Button(ventana, text="Guardar", command=guardar).grid(row=4, column=0, columnspan=2, pady=10)
     
     def ver_historial(self):
-        """Muestra el historial de un usuario."""
+        """Displays a user's history."""
         user_id = tk.simpledialog.askstring("Historial", "ID del usuario:")
         if user_id:
             usuario = self.gestor.buscar_usuario(user_id)
@@ -296,7 +296,7 @@ class BibliotecaGUI:
                 messagebox.showwarning("Error", "Usuario no encontrado")
     
     def actualizar_lista_usuarios(self):
-        """Actualiza la lista de usuarios."""
+        """Update the list of users."""
         for item in self.tree_usuarios.get_children():
             self.tree_usuarios.delete(item)
         
@@ -311,7 +311,7 @@ class BibliotecaGUI:
     #  Interfaz Préstamos
     
     def crear_interfaz_prestamos(self):
-        """Crea la pestaña de préstamos."""
+        """Create the loans tab."""
         tab = ttk.Frame(self.notebook)
         self.notebook.add(tab, text="Préstamos")
         
@@ -350,7 +350,7 @@ class BibliotecaGUI:
                     command=self.ver_prestamos_activos).pack(pady=10)
     
     def realizar_prestamo(self):
-        """Realiza un préstamo."""
+        """Make a loan."""
         exito, msg = self.gestor.realizar_prestamo(
             self.entry_prest_usuario.get(),
             self.entry_prest_isbn.get()
@@ -364,7 +364,7 @@ class BibliotecaGUI:
             messagebox.showerror("Error", msg)
     
     def devolver_libro(self):
-        """Devuelve un libro."""
+        """Return a book."""
         exito, msg = self.gestor.devolver_libro(
             self.entry_dev_usuario.get(),
             self.entry_dev_isbn.get()
@@ -378,7 +378,7 @@ class BibliotecaGUI:
             messagebox.showerror("Error", msg)
     
     def ver_prestamos_activos(self):
-        """Muestra préstamos activos."""
+        """Show active loans."""
         msg = "PRÉSTAMOS ACTIVOS:\n\n"
         total = 0
         
@@ -397,7 +397,7 @@ class BibliotecaGUI:
     #  Interfaz Reservas
     
     def crear_interfaz_reservas(self):
-        """Crea la pestaña de reservas."""
+        """Create the bookings tab."""
         tab = ttk.Frame(self.notebook)
         self.notebook.add(tab, text="Reservas")
         
@@ -421,7 +421,7 @@ class BibliotecaGUI:
                     command=self.ver_todas_reservas).pack(pady=10)
     
     def crear_reserva(self):
-        """Crea una reserva."""
+        """Create a booking."""
         exito, msg = self.gestor.crear_reserva(
             self.entry_res_usuario.get(),
             self.entry_res_isbn.get()
@@ -429,7 +429,7 @@ class BibliotecaGUI:
         messagebox.showinfo("Resultado", msg) if exito else messagebox.showerror("Error", msg)
     
     def cancelar_reserva(self):
-        """Cancela una reserva."""
+        """Cancel a booking."""
         exito, msg = self.gestor.cancelar_reserva(
             self.entry_res_usuario.get(),
             self.entry_res_isbn.get()
@@ -437,7 +437,7 @@ class BibliotecaGUI:
         messagebox.showinfo("Resultado", msg) if exito else messagebox.showerror("Error", msg)
     
     def ver_todas_reservas(self):
-        """Muestra todas las reservas."""
+        """Show all bookings."""
         msg = "RESERVAS:\n\n"
         total = 0
         
@@ -453,7 +453,7 @@ class BibliotecaGUI:
     #  Interfaz Estantes
     
     def crear_interfaz_estantes(self):
-        """Crea la pestaña de estantes."""
+        """Create the shelves tab."""
         tab = ttk.Frame(self.notebook)
         self.notebook.add(tab, text="Estantes")
         
@@ -469,7 +469,7 @@ class BibliotecaGUI:
                     command=self.optimizacion_estanteria).pack(pady=5)
     
     def agregar_estante(self):
-        """Agrega un estante."""
+        """Add a shelf."""
         ventana = tk.Toplevel(self.root)
         ventana.title("Agregar Estante")
         
@@ -495,7 +495,7 @@ class BibliotecaGUI:
         ttk.Button(ventana, text="Guardar", command=guardar).grid(row=2, columnspan=2)
     
     def asignar_libro(self):
-        """Asigna un libro a un estante."""
+        """Assign a book to a shelf."""
         ventana = tk.Toplevel(self.root)
         ventana.title("Asignar Libro a Estante")
         
@@ -524,7 +524,7 @@ class BibliotecaGUI:
         ttk.Button(ventana, text="Asignar", command=guardar).grid(row=2, columnspan=2)
     
     def listar_estantes(self):
-        """Lista todos los estantes."""
+        """List all shelves."""
         msg = "ESTANTES:\n\n"
         for e in self.gestor.listar_estantes():
             msg += f"Estante {e.id}:\n"
@@ -533,7 +533,7 @@ class BibliotecaGUI:
         messagebox.showinfo("Estantes", msg)
     
     def analisis_peligroso(self):
-        """Análisis de fuerza bruta."""
+        """Brute force analysis."""
         libros = self.gestor.obtener_todos_los_libros()
         
         if len(libros) < 4:
@@ -565,7 +565,7 @@ class BibliotecaGUI:
         messagebox.showinfo("Fuerza Bruta", msg)
     
     def optimizacion_estanteria(self):
-        """Optimización con backtracking."""
+        """Optimization with backtracking."""
         libros = self.gestor.obtener_todos_los_libros()
         
         if not libros:
@@ -598,7 +598,7 @@ class BibliotecaGUI:
     #  Interfaz Reportes
     
     def crear_interfaz_reportes(self):
-        """Crea la pestaña de reportes."""
+        """Create the reports tab."""
         tab = ttk.Frame(self.notebook)
         self.notebook.add(tab, text="Reportes")
         
@@ -612,7 +612,7 @@ class BibliotecaGUI:
                     command=self.peso_por_autor).pack(pady=10)
     
     def mostrar_estadisticas(self):
-        """Muestra estadísticas generales."""
+        """Shows general statistics."""
         stats = self.gestor.obtener_estadisticas()
         msg = f"ESTADÍSTICAS:\n\n"
         msg += f"Libros: {stats['total_libros']}\n"
@@ -623,7 +623,7 @@ class BibliotecaGUI:
         messagebox.showinfo("Estadísticas", msg)
     
     def generar_reporte(self):
-        """Genera reporte de inventario."""
+        """Generate inventory report."""
         from controllers.ordenamiento.merge_sort import generar_reporte_global
         libros = self.gestor.obtener_todos_los_libros()
         
@@ -635,7 +635,7 @@ class BibliotecaGUI:
             messagebox.showwarning("Advertencia", "Sin libros")
     
     def valor_por_autor(self):
-        """Calcula valor total de libros por autor usando recursión de pila."""
+        """Calculate total value of books by author using stack recursion."""
         libros = self.gestor.obtener_todos_los_libros()
         
         if not libros:
@@ -678,7 +678,7 @@ class BibliotecaGUI:
         messagebox.showinfo("Valor por Autor", msg)
     
     def peso_por_autor(self):
-        """Calcula peso promedio de libros por autor usando recursión de cola."""
+        """Calculate average book weight per author using tail recursion."""
         libros = self.gestor.obtener_todos_los_libros()
         
         if not libros:
@@ -718,7 +718,7 @@ class BibliotecaGUI:
         messagebox.showinfo("Peso por Autor", msg)
 
 def iniciar_interfaz_grafica():
-    """Inicia la interfaz gráfica."""
+    """Start the graphical interface."""
     root = tk.Tk()
     app = BibliotecaGUI(root)
     root.mainloop()
