@@ -1,21 +1,21 @@
 """
-Sistema de Gestión de Bibliotecas (SGB)
+Library Management System (LMS)
 
-Punto de entrada principal del sistema.
+Main entry point of the system.
 
-Este sistema implementa:
-- Gestión de inventarios (general y ordenado)
-- Estructuras de datos (Pila y Cola)
-- Algoritmos de ordenamiento (Insertion Sort, Merge Sort)
-- Algoritmos de búsqueda (Lineal, Binaria)
-- Algoritmos de resolución (Fuerza Bruta, Backtracking)
-- Recursión (Pila y Cola)
+This system implements:
+- Inventory management (general and ordered)
+- Data structures (Stack and Queue)
+- Sorting algorithms (Insertion Sort, Merge Sort)
+- Search algorithms (Linear, Binary)
+- Resolution algorithms (Brute Force, Backtracking)
+- Recursion (Stack and Queue)
 
-Uso:
+Use:
     python main.py [--cli|--gui]
     
-    --cli: Inicia interfaz de línea de comandos (default)
-    --gui: Inicia interfaz gráfica
+    --cli: Start command line interface (default)
+    --gui: Start graphical interface
 """
 
 import sys
