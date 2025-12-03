@@ -610,6 +610,8 @@ class BibliotecaGUI:
                     command=self.valor_por_autor).pack(pady=10)
         ttk.Button(tab, text="Peso por Autor (Recursión Cola)", 
                     command=self.peso_por_autor).pack(pady=10)
+        ttk.Button(tab, text="Menor Valor de Libros",
+                    command=self.valor_menor).pack(pady=10)
     
     def mostrar_estadisticas(self):
         """Shows general statistics."""
@@ -716,6 +718,45 @@ class BibliotecaGUI:
         msg += f"• No acumula innecesariamente en la pila de llamadas"
         
         messagebox.showinfo("Peso por Autor", msg)
+
+    def valor_menor(self):
+        libros = self.gestor.obtener_todos_los_libros()
+        
+        if not libros:
+            messagebox.showwarning("Advertencia", "No hay libros disponibles")
+            return
+        
+        from controllers.recursion.valor_total import calcular_valor_menor
+        
+        try:
+            analisis = calcular_valor_menor(libros)
+
+            # Verificar que la respuesta no sea None
+            if analisis is None:
+                messagebox.showerror("Error", "Error al procesar los libros")
+                return
+            
+            libro = analisis['libro']
+            valor_menor = analisis['valor_menor']
+            
+            # Mostrar resultados en ventana emergente
+            msg = f"Valor Menor de Libro - RECURSIÓN DE PILA\n"
+            msg += f"Total de libros analizados: {len(libros)}\n"
+            msg += f"Valor menor encontrado: ${valor_menor:,.0f} COP\n\n"
+            msg += f"Libro con menor valor:\n"
+
+            libro = analisis['libro']
+            msg += f"   Título: {libro.titulo}\n"
+            msg += f"   ISBN: {libro.isbn}\n"
+            msg += f"   Autor: {libro.autor}\n"
+            msg += f"   Valor: ${libro.valor:,.0f} COP\n"
+            messagebox.showinfo("Valor Menor", msg)
+        except KeyError as e:
+            messagebox.showerror("Error de Clave", f"Clave no encontrada: {e}\nVerifica la estructura del diccionario")
+        except AttributeError as e:
+            messagebox.showerror("Error de Atributo", f"El libro no tiene el atributo: {e}")
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al calcular: {str(e)}")
 
 def iniciar_interfaz_grafica():
     """Start the graphical interface."""

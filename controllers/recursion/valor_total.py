@@ -33,6 +33,32 @@ def calcular_valor_total(lista_libros, autor, indice=0):
         # Si no es del autor, solo continuar con el siguiente
         return calcular_valor_total(lista_libros, autor, indice + 1)
 
+def calcular_valor_menor(libros: list, indice: int = 0, menor_actual: dict = None):
+    # Caso base: llegamos al final de la lista
+    if not libros:
+        return None
+    # Primera llamada: Inicializar
+    if menor_actual is None:
+        menor_actual = {
+            'libro': libros[0],
+            'valor_menor': libros[0].valor
+        }
+
+    # Caso base: Llegamos al final
+    if indice >= len(libros):
+        return menor_actual
+    
+    # Obtener el libro actual
+    libro_actual = libros[indice]
+
+    # Si el valor actual es menor que el mínimo registrado
+    if libro_actual.valor < menor_actual['valor_menor']:
+        menor_actual['libro'] = libro_actual
+        menor_actual['valor_menor'] = libro_actual.valor
+
+    # Llamada recursiva
+    return calcular_valor_menor(libros, indice + 1, menor_actual)
+
 def calcular_valor_total_con_demostracion(lista_libros, autor, indice=0, nivel=0):
     """
     Version that demonstrates the stack recursion process in the console.
@@ -134,6 +160,8 @@ def analizar_valor_por_autor(lista_libros, autor):
     cantidad_libros = contar_libros_autor(lista_libros, autor)
     libros_encontrados = obtener_libros_autor(lista_libros, autor)
     
+    resultado_menor = calcular_valor_menor(lista_libros)
+
     valor_promedio = valor_total / cantidad_libros if cantidad_libros > 0 else 0
     
     return {
@@ -141,7 +169,9 @@ def analizar_valor_por_autor(lista_libros, autor):
         'cantidad_libros': cantidad_libros,
         'valor_total': valor_total,
         'valor_promedio': valor_promedio,
-        'libros': libros_encontrados
+        'libros': libros_encontrados,
+        'valor_menor': resultado_menor['valor_menor'] if resultado_menor else 0,
+        'libro_menor': resultado_menor['libro'] if resultado_menor else None,
     }
 
 def demostrar_recursion_pila(lista_libros, autor):
